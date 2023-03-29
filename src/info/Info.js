@@ -78,7 +78,7 @@ export const info = {
             emoji: '🎥'
         },
         {
-            label: 'desnvolver',
+            label: 'desenvolver',
             emoji: '👨‍💻'
         }
 
