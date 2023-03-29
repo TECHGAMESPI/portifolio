@@ -21,9 +21,9 @@ export default function About() {
 
     function skillsText() {
         return <>
-            <p><span style={{color: info.baseColor}}>{firstName}{info.lastName.toLowerCase()} $</span> cd habilidades/ferramentas
+            <p><span style={{color: info.baseColor}}>{firstName}{info.lastName.toLowerCase()} $</span> cd habilidades/apps
             </p>
-            <p><span style={{color: info.baseColor}}>habilidades/ferramentas <span
+            <p><span style={{color: info.baseColor}}>habilidades/apps <span
                 className={Style.green}>(main)</span> $</span> ls</p>
             <p style={{color: info.baseColor}}> Habilidade com</p>
             <ul className={Style.skills}>
@@ -39,8 +39,8 @@ export default function About() {
     function miscText() {
         return <>
             <p><span style={{color: info.baseColor}}>{firstName}{info.lastName.toLowerCase()} $</span> cd
-            hobbies/interesses</p>
-            <p><span style={{color: info.baseColor}}>hobbies/interesses <span
+            hobbies</p>
+            <p><span style={{color: info.baseColor}}>hobbies <span
                 className={Style.green}>(main)</span> $</span> ls</p>
             <ul>
                 {info.hobbies.map((hobby, index) => (
