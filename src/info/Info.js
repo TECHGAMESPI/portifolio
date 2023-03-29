@@ -40,6 +40,11 @@ export const info = {
     ],
     socials: [
         {
+            link: "https://www.youtube.com/@techgamespi",
+            icon: 'fa fa-youtube',
+            label: 'youtube'
+        },
+        {
             link: "https://instagram.com/jose_candido_1",
             icon: 'fa fa-instagram',
             label: 'instagram'
