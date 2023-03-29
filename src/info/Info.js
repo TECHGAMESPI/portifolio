@@ -96,7 +96,7 @@ export const info = {
         },
         {
             title: "Clone netflix",
-            live: "https://github.com/TECHGAMESPI/clone-netflix",
+            live: "https://netflixclone-techgamespi.vercel.app/auth",
             source: "https://github.com/TECHGAMESPI/clone-netflix",
             image: mock2
         },
