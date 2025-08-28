@@ -33,10 +33,10 @@ export const info = {
             emoji: "📚",
             text: "Estudante de Engenharia de Software"
         },
-          {
+        {
             emoji: "💼",
             text: "Densenvolvedor na Empresa Retake"
-        }
+        },
         {
             emoji: "📧",
             text: "candido@techgamespi.com"
@@ -96,7 +96,7 @@ export const info = {
         }
 
     ],
-    portfolio: [ // This is where your portfolio projects will be detailed
+    portfolio: [
         {
             title: "Inove Celular",
             live: "https://inovecelular.com/", 
