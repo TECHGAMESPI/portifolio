@@ -30,12 +30,16 @@ export const info = {
             text: 'morando no Brasil'
         },
         {
-            emoji: "💼",
+            emoji: "📚",
             text: "Estudante de Engenharia de Software"
         },
+          {
+            emoji: "💼",
+            text: "Densenvolvedor na Empresa Retake"
+        }
         {
             emoji: "📧",
-            text: "nailie2010@gmail.com"
+            text: "candido@techgamespi.com"
         }
     ],
     socials: [
@@ -55,27 +59,31 @@ export const info = {
             label: 'github'
         },
         {
-            link: "https://www.linkedin.com/in/jos%C3%A9-c%C3%A2ndido-929aa1186/",
+            link: "https://www.linkedin.com/in/josecandido1/",
             icon: "fa fa-linkedin",
             label: 'linkedin'
         },
 
 
     ],
-    bio: "Olá, eu sou o José Cândido e sou estudante de Engenharia de Software atualmente estou cursando o 3º período na faculdade Icev, sou programador Full Stack com habilidades em javascript e lua ",
+    bio: "Olá, eu sou o José Cândido e sou estudante de Engenharia de Software atualmente estou cursando o 8º período na faculdade Icev, sou programador Full Stack com habilidades em JavaScript,Python,Django",
     skills:
         {
-            proficientWith: ['javascript','lua','python', 'wordpress','react', 'nodejs', 'github', 'html5', 'css3'],
+            proficientWith: ['javascript','lua','python', 'django', 'wordpress','react', 'vue.js', 'nodejs', 'ruby on rails', 'github', 'html5', 'css3'],
             exposedTo: ['git','figma']
         }
     ,
     hobbies: [
         {
-            label: 'games',
+            label: 'Games',
             emoji: '🕹️'
         },
+         {
+            label: 'Música',
+            emoji: '🎸'
+        },
         {
-            label: 'praia',
+            label: 'Praia',
             emoji: '🏝️'
         },
         {
@@ -83,7 +91,7 @@ export const info = {
             emoji: '🎥'
         },
         {
-            label: 'desenvolver',
+            label: 'Desenvolver',
             emoji: '👨‍💻'
         }
 
