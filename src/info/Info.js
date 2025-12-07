@@ -43,7 +43,7 @@ export const info = {
         },
         {
              emoji: "📱",
-             text:  "(86)99947-4583
+             text:  "(86)99947-4583"
         }
     ],
     socials: [
