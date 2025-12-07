@@ -35,12 +35,15 @@ export const info = {
         },
         {
             emoji: "💼",
-            text: "Densenvolvedor na Empresa Retake"
+            text: "Aberto a novas oportunidades(contrate-me)"
         },
         {
             emoji: "📧",
             text: "candido@techgamespi.com"
-        }
+        },
+        {
+             emoji: "📱"
+             text:  "(86)99947-4583
     ],
     socials: [
         {
