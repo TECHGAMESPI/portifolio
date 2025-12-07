@@ -42,8 +42,9 @@ export const info = {
             text: "candido@techgamespi.com"
         },
         {
-             emoji: "📱"
+             emoji: "📱",
              text:  "(86)99947-4583
+        }
     ],
     socials: [
         {
