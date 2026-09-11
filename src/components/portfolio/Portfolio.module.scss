@@ -1,0 +1,55 @@
+.page {
+  padding: 5rem 0 6rem;
+}
+
+.heading {
+  max-width: 820px;
+
+  > span {
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #00a978;
+  }
+
+  h1 {
+    margin-top: 0.9rem;
+    font-size: clamp(2.6rem, 6vw, 5.4rem);
+    line-height: 1.01;
+    letter-spacing: -0.055em;
+  }
+
+  p {
+    max-width: 680px;
+    margin-top: 1.25rem;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    opacity: 0.65;
+  }
+}
+
+.grid {
+  margin-top: 3rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.grid > :first-child {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 760px) {
+  .page {
+    padding-top: 3rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .grid > :first-child {
+    grid-column: auto;
+  }
+}
