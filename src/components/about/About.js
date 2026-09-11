@@ -1,60 +1,67 @@
 import React from 'react';
 import Style from './About.module.scss';
-import Terminal from "./Terminal";
-import {Box} from "@mui/material";
 import {info} from "../../info/Info";
 
-
 export default function About() {
-    const firstName = info.firstName.toLowerCase()
-
-    function aboutMeText() {
-        return <>
-            <p><span style={{color: info.baseColor}}>{firstName}{info.lastName.toLowerCase()} $</span> cat
-                about {firstName} </p>
-            <p><span style={{color: info.baseColor}}>about {firstName} <span
-                className={Style.green}>(main)</span> $ </span>
-                {info.bio}
-            </p>
-        </>;
-    }
-
-    function skillsText() {
-        return <>
-            <p><span style={{color: info.baseColor}}>{firstName}{info.lastName.toLowerCase()} $</span> cd habilidades/apps
-            </p>
-            <p><span style={{color: info.baseColor}}>habilidades/apps <span
-                className={Style.green}>(main)</span> $</span> ls</p>
-            <p style={{color: info.baseColor}}> Habilidade com</p>
-            <ul className={Style.skills}>
-                {info.skills.proficientWith.map((proficiency, index) => <li key={index}>{proficiency}</li>)}
-            </ul>
-            <p style={{color: info.baseColor}}> Conhece</p>
-            <ul className={Style.skills}>
-                {info.skills.exposedTo.map((skill, index) => <li key={index}>{skill}</li>)}
-            </ul>
-        </>;
-    }
-
-    function miscText() {
-        return <>
-            <p><span style={{color: info.baseColor}}>{firstName}{info.lastName.toLowerCase()} $</span> cd
-            hobbies</p>
-            <p><span style={{color: info.baseColor}}>hobbies <span
-                className={Style.green}>(main)</span> $</span> ls</p>
-            <ul>
-                {info.hobbies.map((hobby, index) => (
-                    <li key={index}><Box component={'span'} mr={'1rem'}>{hobby.emoji}</Box>{hobby.label}</li>
-                ))}
-            </ul>
-        </>;
-    }
-
     return (
-        <Box display={'flex'} flexDirection={'column'} alignItems={'center'} mt={'3rem'}>
-            <Terminal text={aboutMeText()}/>
-            <Terminal text={skillsText()}/>
-            <Terminal text={miscText()}/>
-        </Box>
+        <section className={Style.page}>
+            <div className={Style.heading}>
+                <span>Sobre mim</span>
+                <h1>Construo soluções pensando além do código.</h1>
+                <p>{info.bio}</p>
+            </div>
+
+            <div className={Style.grid}>
+                <article className={Style.mainCard}>
+                    <span className={Style.cardLabel}>Perfil</span>
+                    <h2>Software, infraestrutura e segurança no mesmo contexto.</h2>
+                    <p>
+                        Minha experiência técnica passa pelo desenvolvimento de aplicações web,
+                        administração de ambientes, redes, servidores e suporte. Isso me ajuda a
+                        enxergar uma solução de ponta a ponta: da interface à infraestrutura onde ela roda.
+                    </p>
+                    <div className={Style.tags}>
+                        <span>Software Engineering</span>
+                        <span>Full Stack</span>
+                        <span>Cybersecurity</span>
+                        <span>Infrastructure</span>
+                    </div>
+                </article>
+
+                <article className={Style.statCard}>
+                    <strong>360°</strong>
+                    <span>Visão do ecossistema de tecnologia</span>
+                </article>
+
+                <article className={Style.statCard}>
+                    <strong>Full Stack</strong>
+                    <span>Front-end, back-end e integrações</span>
+                </article>
+            </div>
+
+            <div className={Style.section}>
+                <div className={Style.sectionTitle}>
+                    <span>Stack principal</span>
+                    <h2>Tecnologias e áreas que fazem parte do meu dia a dia.</h2>
+                </div>
+
+                <div className={Style.skillsGrid}>
+                    {info.skills.proficientWith.map((skill) => (
+                        <span key={skill} className={Style.skill}>{skill}</span>
+                    ))}
+                </div>
+            </div>
+
+            <div className={Style.section}>
+                <div className={Style.sectionTitle}>
+                    <span>Também atuo com</span>
+                </div>
+                <div className={Style.skillsGrid}>
+                    {info.skills.exposedTo.map((skill) => (
+                        <span key={skill} className={Style.secondarySkill}>{skill}</span>
+                    ))}
+                </div>
+            </div>
+        </section>
     )
 }
