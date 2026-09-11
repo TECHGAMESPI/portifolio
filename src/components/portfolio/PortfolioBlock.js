@@ -1,23 +1,41 @@
 import React from 'react';
-import IconLink from "./IconLink";
-import {Box} from "@mui/material";
+import Style from "./PortfolioBlock.module.scss";
 
-function PortfolioBlock(props) {
-   const {image, live, source, title} = props;
+function PortfolioBlock({image, live, source, title, description, tags = [], index}) {
    return (
-      <Box display={'flex'} flexDirection={'column'} justifyContent={'center'} alignItems={'center'}>
-         <Box component={'img'} src={image} alt={'mockup'}/>
-         <h1 style={{fontSize: '2rem'}}>{title}</h1>
-         <Box className={'portfolio'} display={'flex'} flexDirection={'column'} gap={'0.5rem'}
-              alignItems={'center'} fontSize={'1.5rem'} py={'2rem'}>
-            <Box p={1} border={'2px solid black'} borderRadius={'25px'}>
-               <IconLink link={live} title={'Live Demo'} icon={'fa fa-safari'}/>
-            </Box>
-            <Box p={1} border={'2px solid black'} borderRadius={'25px'}>
-               <IconLink link={source} title={'Source Code'} icon={'fa fa-code'}/>
-            </Box>
-         </Box>
-      </Box>
+      <article className={Style.card}>
+         <div className={Style.imageWrap}>
+            <img src={image} alt={`Preview do projeto ${title}`} />
+            <span className={Style.number}>0{index + 1}</span>
+         </div>
+
+         <div className={Style.content}>
+            <div>
+               <span className={Style.label}>Projeto</span>
+               <h2>{title}</h2>
+               {description && <p>{description}</p>}
+            </div>
+
+            {tags.length > 0 && (
+               <div className={Style.tags}>
+                  {tags.map(tag => <span key={tag}>{tag}</span>)}
+               </div>
+            )}
+
+            <div className={Style.links}>
+               {live && (
+                  <a href={live} target="_blank" rel="noopener noreferrer">
+                     Acessar projeto <span>↗</span>
+                  </a>
+               )}
+               {source && (
+                  <a href={source} target="_blank" rel="noopener noreferrer" className={Style.secondary}>
+                     GitHub <span>↗</span>
+                  </a>
+               )}
+            </div>
+         </div>
+      </article>
    );
 }
 
