@@ -1,18 +1,29 @@
 import React from 'react';
 import PortfolioBlock from "./PortfolioBlock";
-import {Box, Grid} from "@mui/material";
+import Style from "./Portfolio.module.scss";
 import {info} from "../../info/Info";
 
 export default function Portfolio() {
     return (
-        <Box>
-            <Grid container display={'flex'} justifyContent={'center'}>
+        <section className={Style.page}>
+            <header className={Style.heading}>
+                <span>Projetos selecionados</span>
+                <h1>Soluções que transformam ideias em produto.</h1>
+                <p>
+                    Uma seleção de projetos que representam minha experiência com desenvolvimento,
+                    produto e resolução de problemas reais.
+                </p>
+            </header>
+
+            <div className={Style.grid}>
                 {info.portfolio.map((project, index) => (
-                   <Grid item xs={12} md={6} key={index}>
-                       <PortfolioBlock image={project.image} live={project.live} source={project.source} title={project.title} />
-                   </Grid>
+                    <PortfolioBlock
+                        key={project.title}
+                        {...project}
+                        index={index}
+                    />
                 ))}
-            </Grid>
-        </Box>
+            </div>
+        </section>
     );
-};
+}
