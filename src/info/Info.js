@@ -15,12 +15,12 @@ export let colors = ["rgb(0,255,164)", "rgb(166,104,255)"];
 export const info = {
     firstName: "Jose",
     lastName: "Candido",
-    initials: "JC", 
-    position: "Desenvolvedor Full Stack",
-    selfPortrait: self, 
+    initials: "JC",
+    position: "Engenheiro de Software | Full Stack Developer",
+    selfPortrait: self,
     gradient: `-webkit-linear-gradient(135deg, ${colors})`, // don't change this either
     baseColor: colors[0],
-    miniBio: [ 
+    miniBio: [
         {
             emoji: '☕',
             text: 'alimentado por café'
@@ -30,12 +30,12 @@ export const info = {
             text: 'morando no Brasil'
         },
         {
-            emoji: "📚",
-            text: "Estudante de Engenharia de Software"
+            emoji: "🎓",
+            text: "Engenheiro de Software e pós-graduado em Cibersegurança"
         },
         {
             emoji: "💼",
-            text: "Aberto a novas oportunidades(contrate-me)"
+            text: "Aberto a novas oportunidades"
         },
         {
             emoji: "📧",
@@ -70,11 +70,11 @@ export const info = {
 
 
     ],
-    bio: "Olá, eu sou o José Cândido e sou estudante de Engenharia de Software atualmente estou cursando o 8º período na faculdade Icev, sou programador Full Stack com habilidades em JavaScript,Python,Django",
+    bio: "Olá! Sou José Cândido, Engenheiro de Software, pós-graduado em Cibersegurança e Desenvolvedor Full Stack. Atuo no desenvolvimento de aplicações e soluções web completas, trabalhando entre front-end e back-end com tecnologias como JavaScript, TypeScript, Python, Django, React, Vue.js, Node.js e Laravel. Também possuo experiência com infraestrutura de TI, redes, servidores, Linux, Windows e Docker, o que me proporciona uma visão ampla do ecossistema de tecnologia. Busco unir desenvolvimento, infraestrutura e segurança para criar soluções eficientes, bem estruturadas e confiáveis.",
     skills:
         {
-            proficientWith: ['javascript','lua','python', 'django', 'wordpress','react', 'vue.js', 'nodejs', 'ruby on rails', 'github', 'html5', 'css3'],
-            exposedTo: ['git','figma']
+            proficientWith: ['javascript', 'typescript', 'python', 'django', 'react', 'vue.js', 'nodejs', 'laravel', 'php', 'wordpress', 'docker', 'linux', 'git', 'github', 'html5', 'css3'],
+            exposedTo: ['cybersecurity', 'networking', 'figma', 'lua', 'ruby on rails']
         }
     ,
     hobbies: [
@@ -103,7 +103,7 @@ export const info = {
     portfolio: [
         {
             title: "Inove Celular",
-            live: "https://inovecelular.com/", 
+            live: "https://inovecelular.com/",
             image: mock1
         },
         {
