@@ -7,15 +7,21 @@ export default function Portfolio() {
     return (
         <section className={Style.page}>
             <header className={Style.heading}>
-                <span>Projetos selecionados</span>
-                <h1>Soluções que transformam ideias em produto.</h1>
-                <p>
-                    Uma seleção de projetos que representam minha experiência com desenvolvimento,
-                    produto e resolução de problemas reais.
-                </p>
+                <div>
+                    <span className={Style.kicker}>Trabalhos selecionados</span>
+                    <h1>Projetos construídos para problemas reais.</h1>
+                </div>
+
+                <div className={Style.intro}>
+                    <span>04 projetos</span>
+                    <p>
+                        Uma seleção que reúne produto, automação, operações e desenvolvimento
+                        full stack — com decisões técnicas orientadas ao uso no mundo real.
+                    </p>
+                </div>
             </header>
 
-            <div className={Style.grid}>
+            <div className={Style.list}>
                 {info.portfolio.map((project, index) => (
                     <PortfolioBlock
                         key={project.title}
