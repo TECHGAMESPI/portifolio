@@ -69,12 +69,12 @@ export const info = {
             privateProject: true
         },
         {
-            title: "Javis GameHouse",
-            category: "SaaS · Operações",
+            title: "Javis Control",
+            category: "Game house · Operações",
             year: "2026",
             status: "Produto proprietário",
-            description: "Plataforma multiempresa para gestão de game houses e arenas, com créditos FIFO, cobrança por minuto, monitoramento de estações, PDV e automação operacional.",
-            tags: ["Laravel", "PostgreSQL", "Redis", ".NET 8", "Docker"],
+            description: "Sistema completo para operação de game houses, com gestão de máquinas e sessões, saldo de tempo, vendas, caixa, controle parental e agente Windows instalado nas estações.",
+            tags: ["Laravel 12", "Electron", "MySQL", "Redis", "JWT"],
             privateProject: true
         },
         {
