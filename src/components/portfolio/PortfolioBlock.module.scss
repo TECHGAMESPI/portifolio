@@ -1,115 +1,149 @@
-.card {
-  overflow: hidden;
-  border: 1px solid rgba(148, 163, 184, 0.16);
-  border-radius: 24px;
-  background: rgba(148, 163, 184, 0.04);
-  transition: transform 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
-
-  &:hover {
-    transform: translateY(-4px);
-    border-color: rgba(0, 255, 164, 0.22);
-    box-shadow: 0 24px 70px rgba(15, 23, 42, 0.08);
-  }
+.project {
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr) minmax(150px, auto);
+  gap: clamp(1.25rem, 3vw, 3rem);
+  padding: 2.6rem 0;
+  border-top: 1px solid rgba(148, 163, 184, 0.18);
+  transition: border-color 160ms ease;
 }
 
-.imageWrap {
-  position: relative;
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
-  background: rgba(148, 163, 184, 0.08);
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 350ms ease;
-  }
-}
-
-.card:hover .imageWrap img {
-  transform: scale(1.025);
+.project:hover {
+  border-color: rgba(45, 212, 191, 0.7);
 }
 
 .number {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  width: 42px;
-  height: 42px;
-  display: grid;
-  place-items: center;
-  border-radius: 12px;
+  padding-top: 0.28rem;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: #07110d;
-  background: linear-gradient(135deg, rgb(0,255,164), rgb(166,104,255));
-  box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+  font-size: 0.68rem;
+  opacity: 0.34;
 }
 
 .content {
-  padding: 1.5rem;
+  max-width: 760px;
 
   h2 {
-    margin-top: 0.35rem;
-    font-size: clamp(1.35rem, 2vw, 2rem);
-    letter-spacing: -0.035em;
+    margin-top: 0.6rem;
+    font-size: clamp(1.8rem, 3.5vw, 3.4rem);
+    line-height: 1;
+    letter-spacing: -0.045em;
   }
 
   p {
-    margin-top: 0.75rem;
-    line-height: 1.7;
-    font-size: 0.9rem;
-    opacity: 0.62;
+    max-width: 680px;
+    margin-top: 1rem;
+    font-size: 0.93rem;
+    line-height: 1.75;
+    opacity: 0.6;
   }
 }
 
-.label {
-  font-size: 0.68rem;
-  font-weight: 800;
-  letter-spacing: 0.11em;
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.045em;
   text-transform: uppercase;
-  color: #00a978;
+  opacity: 0.45;
+
+  span + span::before {
+    content: '—';
+    margin-right: 0.7rem;
+  }
 }
 
 .tags {
-  margin-top: 1.2rem;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.45rem;
+  gap: 0.5rem 0.9rem;
+  margin-top: 1.35rem;
+  padding: 0;
+  list-style: none;
 
-  span {
-    padding: 0.45rem 0.6rem;
-    border-radius: 8px;
-    background: rgba(148, 163, 184, 0.08);
+  li {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.67rem;
-    opacity: 0.75;
+    opacity: 0.48;
+  }
+
+  li::before {
+    content: '/';
+    margin-right: 0.28rem;
+    color: #2dd4bf;
+    opacity: 0.85;
   }
 }
 
-.links {
-  margin-top: 1.3rem;
+.aside {
+  min-width: 150px;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  text-align: right;
+}
+
+.status,
+.private {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.035em;
+}
+
+.status {
+  opacity: 0.38;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
   gap: 0.6rem;
 
   a {
-    min-height: 42px;
-    padding: 0 0.9rem;
-    border-radius: 10px;
     display: inline-flex;
     align-items: center;
-    gap: 0.45rem;
-    color: #07110d !important;
-    background: linear-gradient(135deg, rgb(0,255,164), rgb(166,104,255));
+    gap: 0.4rem;
+    padding-bottom: 0.18rem;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.34);
+    color: inherit;
     font-size: 0.78rem;
-    font-weight: 800;
+    font-weight: 600;
+    transition: border-color 150ms ease, color 150ms ease;
   }
 
-  .secondary {
-    color: inherit !important;
-    background: rgba(148, 163, 184, 0.09);
-    border: 1px solid rgba(148, 163, 184, 0.14);
+  a:hover {
+    color: #2dd4bf;
+    border-color: #2dd4bf;
+  }
+}
+
+.private {
+  opacity: 0.3;
+}
+
+@media (max-width: 700px) {
+  .project {
+    grid-template-columns: 34px minmax(0, 1fr);
+    gap: 1rem;
+    padding: 2rem 0;
+  }
+
+  .aside {
+    grid-column: 2;
+    min-width: 0;
+    align-items: flex-start;
+    gap: 0.9rem;
+    text-align: left;
+  }
+
+  .links {
+    align-items: flex-start;
+  }
+
+  .status {
+    order: 2;
   }
 }
