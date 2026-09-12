@@ -1,0 +1,115 @@
+.card {
+  overflow: hidden;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  border-radius: 24px;
+  background: rgba(148, 163, 184, 0.04);
+  transition: transform 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0, 255, 164, 0.22);
+    box-shadow: 0 24px 70px rgba(15, 23, 42, 0.08);
+  }
+}
+
+.imageWrap {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: rgba(148, 163, 184, 0.08);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 350ms ease;
+  }
+}
+
+.card:hover .imageWrap img {
+  transform: scale(1.025);
+}
+
+.number {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #07110d;
+  background: linear-gradient(135deg, rgb(0,255,164), rgb(166,104,255));
+  box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+}
+
+.content {
+  padding: 1.5rem;
+
+  h2 {
+    margin-top: 0.35rem;
+    font-size: clamp(1.35rem, 2vw, 2rem);
+    letter-spacing: -0.035em;
+  }
+
+  p {
+    margin-top: 0.75rem;
+    line-height: 1.7;
+    font-size: 0.9rem;
+    opacity: 0.62;
+  }
+}
+
+.label {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: #00a978;
+}
+
+.tags {
+  margin-top: 1.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+
+  span {
+    padding: 0.45rem 0.6rem;
+    border-radius: 8px;
+    background: rgba(148, 163, 184, 0.08);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.67rem;
+    opacity: 0.75;
+  }
+}
+
+.links {
+  margin-top: 1.3rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+
+  a {
+    min-height: 42px;
+    padding: 0 0.9rem;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: #07110d !important;
+    background: linear-gradient(135deg, rgb(0,255,164), rgb(166,104,255));
+    font-size: 0.78rem;
+    font-weight: 800;
+  }
+
+  .secondary {
+    color: inherit !important;
+    background: rgba(148, 163, 184, 0.09);
+    border: 1px solid rgba(148, 163, 184, 0.14);
+  }
+}

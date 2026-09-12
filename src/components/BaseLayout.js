@@ -5,51 +5,46 @@ import Home from "./home/Home";
 import About from "./about/About";
 import Portfolio from "./portfolio/Portfolio";
 import {Route, Routes} from "react-router-dom";
-import {Box, Grid} from "@mui/material";
+import {Box} from "@mui/material";
 
 export default function BaseLayout() {
-   let [darkMode, setDarkMode] = useState(false);
+   const [darkMode, setDarkMode] = useState(false);
 
    function handleToggleDarkMode() {
-      let oppositeOfCurrentDarkMode = !darkMode
-      console.log(oppositeOfCurrentDarkMode)
-      localStorage.setItem('darkMode', `${oppositeOfCurrentDarkMode}`)
-      setDarkMode(oppositeOfCurrentDarkMode)
+      const nextMode = !darkMode;
+      localStorage.setItem('darkMode', String(nextMode));
+      setDarkMode(nextMode);
    }
 
    useEffect(() => {
-      let detectedDarkMode = eval(localStorage.getItem('darkMode'));
-
-      if (detectedDarkMode) {
-         setDarkMode(detectedDarkMode)
-      } else {
-         localStorage.setItem('darkMode', 'false')
+      const savedMode = localStorage.getItem('darkMode');
+      if (savedMode !== null) {
+         setDarkMode(savedMode === 'true');
+         return;
       }
-   }, [])
+
+      const prefersDark = window.matchMedia &&
+         window.matchMedia('(prefers-color-scheme: dark)').matches;
+      setDarkMode(prefersDark);
+      localStorage.setItem('darkMode', String(prefersDark));
+   }, []);
 
    return (
       <Box className={darkMode ? Style.dark : Style.light}>
-         <Grid container display={'flex'} flexDirection={'column'} minHeight={'100vh'}
-               justifyContent={'space-between'}>
-            <Grid item>
-               <Navbar darkMode={darkMode} handleClick={handleToggleDarkMode}/>
-            </Grid>
-            <Grid item flexGrow={1}>
-               <Routes>
-                  <Route exact path={'/'} element={<Home/>}/>
-                  <Route exact path={'/about'} element={<About/>}/>
-                  <Route exact path={'/portfolio'} element={<Portfolio/>}/>
-               </Routes>
-            </Grid>
-            <Grid item>
-               <Box component={'footer'} display={'flex'} flexDirection={'column'} alignItems={'center'}
-                    py={'1.5rem'} sx={{opacity: 0.7}} width={'100%'}>
-                  <p>feito com  &hearts; by <a href={'https://github.com/TECHGAMESPI'}>TECHGAMESPI</a></p>
-                  <p>&copy; 2025</p>
-               </Box>
-            </Grid>
-         </Grid>
+         <Navbar darkMode={darkMode} handleClick={handleToggleDarkMode}/>
+
+         <Box component="main" className={Style.content}>
+            <Routes>
+               <Route path="/" element={<Home/>}/>
+               <Route path="/about" element={<About/>}/>
+               <Route path="/portfolio" element={<Portfolio/>}/>
+            </Routes>
+         </Box>
+
+         <footer className={Style.footer}>
+            <span>© 2026 José Cândido</span>
+            <span>Software • Infraestrutura • Segurança</span>
+         </footer>
       </Box>
    )
 }
-

@@ -1,75 +1,58 @@
 @import "../variables.modules";
 
-footer {
-  color: $dark;
-}
-
+.light,
 .dark {
-  background-color: $dark;
-  color: $white;
-  transition: all 400ms;
-
-  a, i, li {
-    color: $white;
-    transition: color 400ms;
-  }
-
-  a:visited {
-    color: $white;
-  }
-
-  footer {
-    color: $white;
-  }
+  min-height: 100vh;
+  transition: background-color 250ms ease, color 250ms ease;
 }
 
 .light {
-  background-color: $white;
-  color: $dark;
-  transition: all 400ms;
+  background:
+    radial-gradient(circle at 15% 15%, rgba(0, 255, 164, 0.08), transparent 28rem),
+    radial-gradient(circle at 85% 5%, rgba(166, 104, 255, 0.10), transparent 26rem),
+    #f7f8fb;
+  color: #111827;
 }
 
+.dark {
+  background:
+    radial-gradient(circle at 15% 15%, rgba(0, 255, 164, 0.09), transparent 28rem),
+    radial-gradient(circle at 85% 5%, rgba(166, 104, 255, 0.12), transparent 26rem),
+    #080b12;
+  color: #f8fafc;
 
-//.dark {
-//  background-color: $dark;
-//  color: $white;
-//  transition: all 400ms;
-//  a, i {
-//    color: $white;
-//    transition: color 400ms;
-//  }
-//  a:visited {
-//    color: $white;
-//  }
-//  i:hover {
-//    color: $purple;
-//  }
-//  footer {
-//    color: $white;
-//  }
-//
-//  nav {
-//    background-color: $dark;
-//    transition: $transition;
-//  }
-//
-//  div > section > div:first-child {
-//    background-color: #575e64;
-//    i:first-child {
-//      color: $red;
-//    }
-//    i:nth-child(2) {
-//      color: $yellow;
-//    }
-//    i:nth-child(3) {
-//      color: $green;
-//    }
-//  }
-//
-//
-//  & > div div {
-//    i {
-//      color: white;
-//    }
-//  }
-//}
+  a, i, li {
+    color: inherit;
+  }
+}
+
+.content {
+  width: min(1180px, calc(100% - 2rem));
+  margin: 0 auto;
+  min-height: calc(100vh - 160px);
+}
+
+.footer {
+  width: min(1180px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 2rem 0 2.5rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.84rem;
+  opacity: 0.65;
+}
+
+@media (max-width: 640px) {
+  .content,
+  .footer {
+    width: min(100% - 1.25rem, 1180px);
+  }
+
+  .footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
