@@ -1,7 +1,4 @@
 import self from "../img/self.png"
-import mock1 from "../img/mock1.png"
-import mock2 from "../img/mock2.png"
-import mock3 from "../img/mock3.png"
 
 export let colors = ["rgb(0,255,164)", "rgb(166,104,255)"];
 
@@ -63,27 +60,40 @@ export const info = {
     ],
     portfolio: [
         {
-            title: "Inove Celular",
-            description: "Projeto web voltado para operação e presença digital, com foco em uma experiência clara para o usuário.",
-            tags: ["Web", "Full Stack", "Produto"],
-            live: "https://inovecelular.com/",
-            image: mock1
+            title: "VoaFácil",
+            category: "Produto digital",
+            year: "2026",
+            status: "Em desenvolvimento",
+            description: "Plataforma de busca e comparação de passagens aéreas com filtros em tempo real, rotas compartilháveis, integração com a Travelpayouts e cobertura de testes.",
+            tags: ["Next.js 16", "TypeScript", "React 19", "APIs", "Vitest"],
+            privateProject: true
         },
         {
-            title: "Clone Netflix",
-            description: "Projeto de interface inspirado em uma plataforma de streaming, desenvolvido para explorar experiência visual e front-end.",
-            tags: ["React", "JavaScript", "UI"],
-            live: "https://netflixclone-techgamespi.vercel.app/auth",
-            source: "https://github.com/TECHGAMESPI/clone-netflix",
-            image: mock2
+            title: "Javis GameHouse",
+            category: "SaaS · Operações",
+            year: "2026",
+            status: "Produto proprietário",
+            description: "Plataforma multiempresa para gestão de game houses e arenas, com créditos FIFO, cobrança por minuto, monitoramento de estações, PDV e automação operacional.",
+            tags: ["Laravel", "PostgreSQL", "Redis", ".NET 8", "Docker"],
+            privateProject: true
         },
         {
-            title: "Gerador de Senhas",
-            description: "Aplicação simples e objetiva para geração de senhas, criada com foco em utilidade e boas práticas de desenvolvimento.",
-            tags: ["JavaScript", "Segurança", "Web"],
-            live: "https://github.com/TECHGAMESPI/gerador-de-senhas",
-            source: "https://github.com/TECHGAMESPI/gerador-de-senhas",
-            image: mock3
+            title: "Chamada EBD",
+            category: "Gestão · Comunidade",
+            year: "2024",
+            status: "Código aberto",
+            description: "Sistema para gestão de presença na Escola Bíblica Dominical, com perfis de acesso, turmas, visitantes e gamificação por frequência.",
+            tags: ["Laravel", "PHP", "JavaScript", "MySQL"],
+            source: "https://github.com/TECHGAMESPI/chamada-ebd"
+        },
+        {
+            title: "LuminaFlow",
+            category: "Automação financeira",
+            year: "2025",
+            status: "MVP colaborativo",
+            description: "MVP de automação e insights financeiros com uma API que simula o fluxo Stripe–Omie, documentação técnica e execução conteinerizada.",
+            tags: ["Python", "FastAPI", "Docker", "REST API"],
+            source: "https://github.com/TECHGAMESPI/luminaflow"
         }
     ]
 }
