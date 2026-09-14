@@ -12,7 +12,7 @@ export default function Home({t}) {
         <p className={Style.eyebrow}><span/>{h.eyebrow}</p>
         <h1>Engenheiro<br/>de Software <em>{h.title}</em></h1>
         <p className={Style.lead}>{h.intro}</p>
-        <div className={Style.actions}><Link to="/portfolio" className={Style.primary}>{h.primary}<span>↗</span></Link><a href={profile.whatsapp} target="_blank" rel="noreferrer">{h.secondary}</a></div>
+        <div className={Style.actions}><Link to="/portfolio" className={Style.primary}>{h.primary}<span>↗</span></Link><a href={profile.contact} target="_blank" rel="noreferrer">{h.secondary}</a></div>
         <div className={Style.identity}><img src={me} alt="José Cândido"/><div><strong>José Cândido</strong><span>Software Engineer · Cybersecurity</span></div><div className={Style.social}><a href={profile.github} target="_blank" rel="noreferrer">GH</a><a href={profile.linkedin} target="_blank" rel="noreferrer">IN</a></div></div>
       </div>
       <aside className={Style.snapshot}>
@@ -43,6 +43,6 @@ export default function Home({t}) {
       <div className={Style.projectStrip}>{projects.slice(0,3).map((project,i)=><Link to="/portfolio" key={project.title} className={`${Style.miniProject} ${Style[project.tone]}`}><span>0{i+1}</span><div><small>{project.category}</small><strong>{project.title}</strong></div><i>↗</i></Link>)}</div>
     </section>
 
-    <section className={Style.cta}><p className={Style.eyebrow}>05 · Contact</p><h2>{h.closing}</h2><a href={profile.whatsapp} target="_blank" rel="noreferrer">{h.closingButton}<span>↗</span></a></section>
+    <section className={Style.cta}><p className={Style.eyebrow}>05 · Contact</p><h2>{h.closing}</h2><a href={profile.contact} target="_blank" rel="noreferrer">{h.closingButton}<span>↗</span></a></section>
   </>;
 }
