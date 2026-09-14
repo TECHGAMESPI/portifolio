@@ -1,67 +1,14 @@
 import React from 'react';
 import Style from './About.module.scss';
-import {info} from "../../info/Info";
+import me from '../../img/self.png';
+import {skills} from '../../info/Content';
 
-export default function About() {
-    return (
-        <section className={Style.page}>
-            <div className={Style.heading}>
-                <span>Sobre mim</span>
-                <h1>Construo soluções pensando além do código.</h1>
-                <p>{info.bio}</p>
-            </div>
-
-            <div className={Style.grid}>
-                <article className={Style.mainCard}>
-                    <span className={Style.cardLabel}>Perfil</span>
-                    <h2>Software, infraestrutura e segurança no mesmo contexto.</h2>
-                    <p>
-                        Minha experiência técnica passa pelo desenvolvimento de aplicações web,
-                        administração de ambientes, redes, servidores e suporte. Isso me ajuda a
-                        enxergar uma solução de ponta a ponta: da interface à infraestrutura onde ela roda.
-                    </p>
-                    <div className={Style.tags}>
-                        <span>Software Engineering</span>
-                        <span>Full Stack</span>
-                        <span>Cybersecurity</span>
-                        <span>Infrastructure</span>
-                    </div>
-                </article>
-
-                <article className={Style.statCard}>
-                    <strong>360°</strong>
-                    <span>Visão do ecossistema de tecnologia</span>
-                </article>
-
-                <article className={Style.statCard}>
-                    <strong>Full Stack</strong>
-                    <span>Front-end, back-end e integrações</span>
-                </article>
-            </div>
-
-            <div className={Style.section}>
-                <div className={Style.sectionTitle}>
-                    <span>Stack principal</span>
-                    <h2>Tecnologias e áreas que fazem parte do meu dia a dia.</h2>
-                </div>
-
-                <div className={Style.skillsGrid}>
-                    {info.skills.proficientWith.map((skill) => (
-                        <span key={skill} className={Style.skill}>{skill}</span>
-                    ))}
-                </div>
-            </div>
-
-            <div className={Style.section}>
-                <div className={Style.sectionTitle}>
-                    <span>Também atuo com</span>
-                </div>
-                <div className={Style.skillsGrid}>
-                    {info.skills.exposedTo.map((skill) => (
-                        <span key={skill} className={Style.secondarySkill}>{skill}</span>
-                    ))}
-                </div>
-            </div>
-        </section>
-    )
+export default function About({t}) {
+  const a=t.about;
+  return <section className={Style.page}>
+    <header className={Style.intro}><div><p className={Style.eyebrow}>01 · {a.eyebrow}</p><h1>{a.title}</h1><p className={Style.lead}>{a.intro}</p><p className={Style.detail}>{a.detail}</p></div><figure><img src={me} alt="José Cândido"/><figcaption><span>José Cândido</span><small>Full Stack · CTO · Cybersecurity</small></figcaption></figure></header>
+    <section className={Style.block}><div className={Style.blockTitle}><span>02</span><h2>{a.journeyTitle}</h2></div><div className={Style.timeline}>{a.timeline.map(([period,title,text])=><article key={title}><time>{period}</time><div><h3>{title}</h3><p>{text}</p></div></article>)}</div></section>
+    <section className={Style.block}><div className={Style.blockTitle}><span>03</span><h2>{a.skillsTitle}</h2></div><div className={Style.skills}>{skills.map(skill=><span key={skill}>{skill}</span>)}</div></section>
+    <section className={Style.split}><article><p className={Style.eyebrow}>04 · {a.publicationTitle}</p><h2>Cybersecurity<br/>as research.</h2><p>{a.publication}</p><span className={Style.badge}>Qualis B2 · Ransomware</span></article><article><p className={Style.eyebrow}>05 · {a.strengthsTitle}</p><ul>{a.strengths.map((item,i)=><li key={item}><span>0{i+1}</span>{item}</li>)}</ul></article></section>
+  </section>;
 }

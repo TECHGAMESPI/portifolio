@@ -1,35 +1,13 @@
 import React from 'react';
-import PortfolioBlock from "./PortfolioBlock";
-import Style from "./Portfolio.module.scss";
-import {info} from "../../info/Info";
+import Style from './Portfolio.module.scss';
+import PortfolioBlock from './PortfolioBlock';
+import {profile, projects} from '../../info/Content';
 
-export default function Portfolio() {
-    return (
-        <section className={Style.page}>
-            <header className={Style.heading}>
-                <div>
-                    <span className={Style.kicker}>Trabalhos selecionados</span>
-                    <h1>Projetos construídos para problemas reais.</h1>
-                </div>
-
-                <div className={Style.intro}>
-                    <span>04 projetos</span>
-                    <p>
-                        Uma seleção que reúne produto, automação, operações e desenvolvimento
-                        full stack — com decisões técnicas orientadas ao uso no mundo real.
-                    </p>
-                </div>
-            </header>
-
-            <div className={Style.list}>
-                {info.portfolio.map((project, index) => (
-                    <PortfolioBlock
-                        key={project.title}
-                        {...project}
-                        index={index}
-                    />
-                ))}
-            </div>
-        </section>
-    );
+export default function Portfolio({t}) {
+  const p=t.projects;
+  return <section className={Style.page}>
+    <header><div><p className={Style.eyebrow}>01 · {p.eyebrow}</p><h1>{p.title}</h1></div><p>{p.intro}</p></header>
+    <div className={Style.list}>{projects.map((project,index)=><PortfolioBlock key={project.title} project={project} index={index} labels={p}/>)}</div>
+    <section className={Style.contact}><div><p className={Style.eyebrow}>02 · Contact</p><h2>{p.contactTitle}</h2><p>{p.contactText}</p></div><div className={Style.contactLinks}><a href={profile.linkedin} target="_blank" rel="noreferrer">{p.send}<span>↗</span></a><a href={profile.github} target="_blank" rel="noreferrer">GitHub<span>↗</span></a></div></section>
+  </section>;
 }

@@ -1,32 +1,1035 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" media="screen">
-    <link rel="icon" type="image/png" href="scr/components/img/logo.png">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Portfólio de José Cândido — Engenharia de Software, Full Stack e Cibersegurança.">
+<meta name="theme-color" content="#0A0B0C">
+<title>José Cândido · Software Engineer</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  body { margin: 0; background: #0A0B0C; color: #EDECE8; font-family: 'Instrument Sans', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  * { box-sizing: border-box; }
+  a { color: var(--accent, #2EE6A8); text-decoration: none; }
+  a:hover { color: var(--accent2, #7DF3C9); }
+  input, textarea, button { font: inherit; }
+  ::selection { background: rgba(46,230,168,0.25); }
+  @keyframes pulseDot { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: .35; transform: scale(.8); } }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  header nav a[data-active="true"] {
+    border-color: var(--line2, rgba(255,255,255,0.16)) !important;
+    background: var(--line, rgba(255,255,255,0.06)) !important;
+    color: var(--ink, #EDECE8) !important;
+  }
+</style>
+</helmet>
 
-    <base href="/">
-    <meta
-      name="description"
-      content="developer portfolio"
-    />
-    <meta name="keyword" content="portfolio, javascript, developer, frontend, react, dev, front-end, tech, programmer">
-    <title>TECHGAMESPI Portifolio</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+<div id="theme-root" style="{{ themeVars }}">
+<canvas ref="{{ bgRef }}" style="position: fixed; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; background: var(--bg, #0A0B0C);"></canvas>
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+<div style="min-height: 100vh; position: relative; background:
+  radial-gradient(900px 500px at 78% -8%, rgba(167,139,250,0.14), transparent 60%),
+  radial-gradient(700px 420px at 8% 0%, rgba(46,230,168,0.10), transparent 60%),
+  transparent;">
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
+  <header style="position: sticky; top: 0; z-index: 20; backdrop-filter: blur(14px); background: var(--header, rgba(10,11,12,0.72)); border-bottom: 1px solid var(--line, rgba(255,255,255,0.07));">
+    <div style="max-width: 1120px; margin: 0 auto; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; gap: 24px;">
+      <a href="#home" style="display: flex; align-items: center; gap: 11px; cursor: pointer; color: var(--ink, #EDECE8);">
+        <span style="width: 7px; height: 7px; border-radius: 50%; background: var(--accent, #2EE6A8); flex: none;"></span>
+        <div style="display: flex; flex-direction: column; line-height: 1.2;">
+          <strong style="font-family: 'Space Grotesk', sans-serif; font-size: 16px; letter-spacing: -0.015em; font-weight: 600;">José Cândido</strong>
+          <small style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--dim, #83868A); letter-spacing: 0.1em;">{{ t.kicker }}</small>
+        </div>
+      </a>
+      <nav style="display: flex; align-items: center; gap: 6px;">
+        <a href="#home" data-active="{{ isHome }}" style="padding: 9px 15px; border-radius: 999px; border: 1px solid transparent; background: transparent; color: var(--muted, #9A9C9E); font-size: 14px; font-weight: 500;">{{ navHome }}</a>
+        <a href="#sobre" data-active="{{ isSobre }}" style="padding: 9px 15px; border-radius: 999px; border: 1px solid transparent; background: transparent; color: var(--muted, #9A9C9E); font-size: 14px; font-weight: 500;">{{ navAbout }}</a>
+        <a href="#empresas" data-active="{{ isEmpresas }}" style="padding: 9px 15px; border-radius: 999px; border: 1px solid transparent; background: transparent; color: var(--muted, #9A9C9E); font-size: 14px; font-weight: 500;">{{ navCompanies }}</a>
+        <a href="#projetos" data-active="{{ isProjetos }}" style="padding: 9px 15px; border-radius: 999px; border: 1px solid transparent; background: transparent; color: var(--muted, #9A9C9E); font-size: 14px; font-weight: 500;">{{ navProjects }}</a>
+        <button id="language-toggle" type="button" aria-label="Language" style="margin-left: 6px; height: 34px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--line2, rgba(255,255,255,0.12)); background: transparent; color: var(--muted, #9A9C9E); font-family: 'JetBrains Mono', monospace; font-size: 11.5px; letter-spacing: 0.06em; cursor: pointer;">{{ langLabel }}</button>
+        <button id="theme-toggle" type="button" aria-label="Alternar tema" style="margin-left: 6px; width: 34px; height: 34px; border-radius: 999px; border: 1px solid var(--line2, rgba(255,255,255,0.12)); background: transparent; color: var(--muted, #9A9C9E); font-size: 13px; cursor: pointer; display: grid; place-items: center;">{{ themeIcon }}</button>
+        <a href="https://wa.me/5586999474587" target="_blank" rel="noopener" style="margin-left: 10px; padding: 9px 17px; border-radius: 999px; background: var(--accent, #2EE6A8); color: var(--on-accent, #06140F); font-weight: 600; font-size: 13.5px;" style-hover="background: var(--accent2, #7DF3C9);">{{ t.wa }}</a>
+      </nav>
+    </div>
+  </header>
+
+  <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+  <main style="max-width: 1120px; margin: 0 auto; padding: 0 24px 96px;">
+
+    <section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 48px; align-items: center; padding: 88px 0 72px;">
+      <div style="animation: fadeUp .6s ease both;">
+        <div style="display: inline-flex; align-items: center; gap: 9px; padding: 7px 14px; border: 1px solid rgba(46,230,168,0.35); border-radius: 999px; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--accent, #2EE6A8); letter-spacing: 0.03em;">
+          <span style="width: 7px; height: 7px; border-radius: 50%; background: var(--accent, #2EE6A8); animation: pulseDot 2s infinite;"></span>
+          {{ t.badge }}
+        </div>
+        <h1 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(40px, 6.2vw, 76px); line-height: 0.98; letter-spacing: -0.035em; margin: 26px 0 0; font-weight: 600; text-wrap: balance;">
+          {{ t.h1a }}<br />
+          <span style="color: var(--dim, #83868A);">{{ t.h1b }}</span>
+        </h1>
+        <p style="max-width: 54ch; margin: 24px 0 0; font-size: 17.5px; line-height: 1.62; color: var(--soft, #B4B6B8); text-wrap: pretty;">
+          {{ t.heroText }}
+        </p>
+        <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px;">
+          <a href="#projetos" style="padding: 14px 26px; border-radius: 999px; border: none; background: var(--ink, #EDECE8); color: var(--bg, #0A0B0C); font-weight: 600; font-size: 15px;">{{ t.btnProjects }}</a>
+          <a href="https://wa.me/5586999474587" target="_blank" rel="noopener" style="padding: 14px 26px; border-radius: 999px; border: 1px solid var(--line2, rgba(255,255,255,0.18)); background: transparent; color: var(--ink, #EDECE8); font-weight: 600; font-size: 15px;" style-hover="border-color: rgba(46,230,168,0.6); color: var(--accent, #2EE6A8);">{{ t.btnWa }}</a>
+          <a href="{{ cvMailto }}" style="padding: 14px 26px; border-radius: 999px; border: 1px solid var(--line2, rgba(255,255,255,0.18)); background: transparent; color: var(--muted, #9A9C9E); font-weight: 600; font-size: 15px;" style-hover="border-color: var(--line2, rgba(255,255,255,0.4)); color: var(--ink, #EDECE8);">{{ t.btnCv }}</a>
+        </div>
+        <div style="display: flex; align-items: center; gap: 18px; margin-top: 36px;">
+          <img src="https://raw.githubusercontent.com/TECHGAMESPI/portifolio/main/src/img/self.png" alt="José Cândido" style="width: 46px; height: 46px; border-radius: 50%; object-fit: cover; border: 1px solid var(--line2, rgba(255,255,255,0.14));" />
+          <div style="display: flex; gap: 20px; font-size: 13.5px;">
+            <a href="https://github.com/TECHGAMESPI" style="color: var(--muted, #9A9C9E);" style-hover="color: var(--ink, #EDECE8);">GitHub</a>
+            <a href="https://www.linkedin.com/in/josecandido1/" style="color: var(--muted, #9A9C9E);" style-hover="color: var(--ink, #EDECE8);">LinkedIn</a>
+            <a href="https://www.youtube.com/@techgamespi" style="color: var(--muted, #9A9C9E);" style-hover="color: var(--ink, #EDECE8);">YouTube</a>
+            <a href="https://instagram.com/jose_candido_1" style="color: var(--muted, #9A9C9E);" style-hover="color: var(--ink, #EDECE8);">Instagram</a>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 10px; padding: 22px; border: 1px solid var(--line, rgba(255,255,255,0.08)); border-radius: 18px; background: var(--fill, rgba(255,255,255,0.025));">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); letter-spacing: 0.06em; margin-bottom: 6px;">{{ t.cardTitle }}</div>
+        <sc-for list="{{ t.rows }}" as="r" hint-placeholder-count="6">
+          <div style="display: flex; justify-content: space-between; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--line, rgba(255,255,255,0.06));">
+            <span style="color: var(--muted, #9A9C9E); font-size: 14px;">{{ r.k }}</span>
+            <strong style="font-size: 14px; text-align: right;">{{ r.v }}</strong>
+          </div>
+        </sc-for>
+        <div style="display: flex; justify-content: space-between; gap: 16px; padding: 12px 0;">
+          <span style="color: var(--muted, #9A9C9E); font-size: 14px;">{{ t.rReply }}</span>
+          <strong style="font-size: 14px; text-align: right; color: var(--accent, #2EE6A8);">{{ t.vReply }}</strong>
+        </div>
+      </div>
+    </section>
+
+    <section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1px; background: var(--line, rgba(255,255,255,0.08)); border: 1px solid var(--line, rgba(255,255,255,0.08)); border-radius: 16px; overflow: hidden;">
+      <sc-for list="{{ t.pillars }}" as="p" hint-placeholder-count="3">
+        <div style="background: var(--panel, #0C0D0F); padding: 30px 26px;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent, #2EE6A8);">{{ p.n }}</div>
+          <strong style="display: block; font-family: 'Space Grotesk', sans-serif; font-size: 19px; margin: 12px 0 8px; font-weight: 600;">{{ p.t }}</strong>
+          <span style="font-size: 14.5px; color: var(--muted, #9A9C9E); line-height: 1.55;">{{ p.d }}</span>
+        </div>
+      </sc-for>
+    </section>
+
+    <section style="padding: 96px 0 0;">
+      <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; flex-wrap: wrap; margin-bottom: 36px;">
+        <div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); letter-spacing: 0.08em;">{{ t.svcKicker }}</div>
+          <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(28px, 3.6vw, 42px); letter-spacing: -0.03em; font-weight: 600; margin: 14px 0 0; max-width: 20ch; line-height: 1.08;">{{ t.svcTitle }}</h2>
+        </div>
+        <p style="max-width: 38ch; color: var(--muted, #9A9C9E); font-size: 15px; line-height: 1.6; margin: 0;">{{ t.svcLead }}</p>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px;">
+        <sc-for list="{{ services }}" as="s" hint-placeholder-count="4">
+          <div style="padding: 28px 24px; border: 1px solid var(--line, rgba(255,255,255,0.08)); border-radius: 16px; background: var(--fill, rgba(255,255,255,0.02)); transition: all 200ms ease;" style-hover="border-color: rgba(46,230,168,0.35); background: rgba(46,230,168,0.04);">
+            <strong style="display: block; font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 600; margin-bottom: 10px;">{{ s.title }}</strong>
+            <span style="font-size: 14.5px; color: var(--muted, #9A9C9E); line-height: 1.6;">{{ s.text }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section style="padding: 96px 0 0;">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); letter-spacing: 0.08em;">{{ t.compKicker }}</div>
+      <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin: 14px 0 36px;">
+        <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(28px, 3.6vw, 42px); letter-spacing: -0.03em; font-weight: 600; margin: 0; line-height: 1.08; max-width: 22ch;">{{ t.compTitle }}</h2>
+        <a href="#empresas" style="color: var(--accent, #2EE6A8); font-size: 14.5px; font-weight: 600;">{{ t.compLink }}</a>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px;">
+        <div style="padding: 34px 30px; border: 1px solid var(--line, rgba(255,255,255,0.08)); border-radius: 20px; background: var(--panel, #0C0D0F); display: flex; flex-direction: column; gap: 14px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px;">
+            <strong style="font-family: 'Space Grotesk', sans-serif; font-size: 26px; letter-spacing: -0.025em; font-weight: 600;">ChatExpress</strong>
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--accent, #2EE6A8); padding: 5px 11px; border: 1px solid rgba(46,230,168,0.3); border-radius: 999px; letter-spacing: 0.05em;">SAAS</span>
+          </div>
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--dim, #83868A); letter-spacing: 0.05em;">{{ t.ceSub }}</span>
+          <span style="font-size: 15.5px; color: var(--muted, #9A9C9E); line-height: 1.65;">{{ t.ceText }}</span>
+          <div style="display: flex; flex-wrap: wrap; gap: 7px; margin-top: 2px;">
+            <span style="padding: 6px 11px; border-radius: 7px; background: var(--fill, rgba(255,255,255,0.05)); font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--soft, #C3C5C7);">WhatsApp</span>
+            <span style="padding: 6px 11px; border-radius: 7px; background: var(--fill, rgba(255,255,255,0.05)); font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--soft, #C3C5C7);">Telegram</span>
+            <span style="padding: 6px 11px; border-radius: 7px; background: var(--fill, rgba(255,255,255,0.05)); font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--soft, #C3C5C7);">LiveChat</span>
+            <span style="padding: 6px 11px; border-radius: 7px; background: var(--fill, rgba(255,255,255,0.05)); font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--soft, #C3C5C7);">E-mail</span>
+            <span style="padding: 6px 11px; border-radius: 7px; background: var(--fill, rgba(255,255,255,0.05)); font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--soft, #C3C5C7);">SMS</span>
+            <span style="padding: 6px 11px; border-radius: 7px; background: var(--fill, rgba(255,255,255,0.05)); font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--soft, #C3C5C7);">OpenAI · DialogFlow</span>
+          </div>
+          <a href="https://chatexpress.com.br" target="_blank" rel="noopener" style="font-size: 14.5px; font-weight: 600; margin-top: 4px;">chatexpress.com.br →</a>
+        </div>
+        <div style="padding: 34px 30px; border: 1px solid var(--line, rgba(255,255,255,0.08)); border-radius: 20px; background: var(--panel, #0C0D0F); display: flex; flex-direction: column; gap: 14px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px;">
+            <strong style="font-family: 'Space Grotesk', sans-serif; font-size: 26px; letter-spacing: -0.025em; font-weight: 600;">TechGamesPI</strong>
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: #A78BFA; padding: 5px 11px; border: 1px solid rgba(167,139,250,0.3); border-radius: 999px; letter-spacing: 0.05em;">{{ t.tgBadge }}</span>
+          </div>
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--dim, #83868A); letter-spacing: 0.05em;">{{ t.tgSub }}</span>
+          <span style="font-size: 15.5px; color: var(--muted, #9A9C9E); line-height: 1.65;">{{ t.tgText }}</span>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding: 96px 0 0;">
+      <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-bottom: 32px;">
+        <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(28px, 3.6vw, 42px); letter-spacing: -0.03em; font-weight: 600; margin: 0; line-height: 1.08;">{{ t.projTitle }}</h2>
+        <a href="#projetos" style="color: var(--accent, #2EE6A8); font-size: 14.5px; font-weight: 600;">{{ t.projAll }}</a>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
+        <sc-for list="{{ featured }}" as="p" hint-placeholder-count="2">
+          <div style="padding: 30px 26px; border: 1px solid var(--line, rgba(255,255,255,0.08)); border-radius: 18px; background: var(--panel, #0C0D0F);">
+            <div style="display: flex; justify-content: space-between; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); letter-spacing: 0.05em;">
+              <span>{{ p.category }}</span><span>{{ p.year }}</span>
+            </div>
+            <strong style="display: block; font-family: 'Space Grotesk', sans-serif; font-size: 24px; letter-spacing: -0.02em; font-weight: 600; margin: 16px 0 10px;">{{ p.title }}</strong>
+            <span style="display: block; font-size: 15px; color: var(--muted, #9A9C9E); line-height: 1.6;">{{ p.description }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section style="margin: 96px 0 0; padding: 52px 44px; border-radius: 24px; border: 1px solid var(--line, rgba(255,255,255,0.08)); background: linear-gradient(135deg, rgba(46,230,168,0.10), rgba(167,139,250,0.10));">
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap;">
+        <div>
+          <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(26px, 3.4vw, 38px); letter-spacing: -0.03em; font-weight: 600; margin: 0; line-height: 1.1;">{{ t.ctaTitle }}</h2>
+          <p style="color: var(--soft, #B4B6B8); font-size: 16px; margin: 14px 0 0;">{{ t.ctaText }}</p>
+        </div>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+          <a href="https://wa.me/5586999474587" target="_blank" rel="noopener" style="padding: 15px 30px; border-radius: 999px; background: var(--accent, #2EE6A8); color: var(--on-accent, #06140F); font-weight: 600; font-size: 15px; white-space: nowrap;" style-hover="background: var(--accent2, #7DF3C9);">{{ t.ctaWa }}</a>
+          <a href="#contato" style="padding: 15px 30px; border-radius: 999px; border: 1px solid var(--line2, rgba(255,255,255,0.2)); background: transparent; color: var(--ink, #EDECE8); font-weight: 600; font-size: 15px; white-space: nowrap;">{{ t.ctaForm }}</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  </sc-if>
+
+  <sc-if value="{{ isSobre }}" hint-placeholder-val="{{ false }}">
+  <main style="max-width: 1120px; margin: 0 auto; padding: 80px 24px 96px;">
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); letter-spacing: 0.08em;">{{ t.aboutKicker }}</div>
+    <h1 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(34px, 5vw, 60px); letter-spacing: -0.035em; font-weight: 600; line-height: 1.03; margin: 18px 0 0; max-width: 18ch;">{{ t.aboutTitle }}</h1>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 48px; margin-top: 48px; align-items: start;">
+      <div>
+        <p style="font-size: 18px; line-height: 1.7; color: var(--soft, #C3C5C7); margin: 0; text-wrap: pretty;">{{ t.aboutP1 }}</p>
+        <p style="font-size: 18px; line-height: 1.7; color: var(--muted, #9A9C9E); margin: 22px 0 0; text-wrap: pretty;">{{ t.aboutP2 }}</p>
+        <p style="font-size: 18px; line-height: 1.7; color: var(--muted, #9A9C9E); margin: 22px 0 0; text-wrap: pretty;">{{ t.aboutP3 }}</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <img src="https://raw.githubusercontent.com/TECHGAMESPI/portifolio/main/src/img/self.png" alt="José Cândido" style="width: 100%; border-radius: 18px; object-fit: cover; aspect-ratio: 4 / 5; border: 1px solid var(--line2, rgba(255,255,255,0.1));" />
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); line-height: 1.6;">{{ t.aboutLoc }}<br />candido@techgamespi.com</div>
+      </div>
+    </div>
+
+    <section style="margin-top: 88px;">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); letter-spacing: 0.08em;">{{ t.trajKicker }}</div>
+      <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(26px, 3.4vw, 38px); letter-spacing: -0.03em; font-weight: 600; margin: 14px 0 36px;">{{ t.trajTitle }}</h2>
+      <div style="display: flex; flex-direction: column;">
+        <sc-for list="{{ timeline }}" as="t" hint-placeholder-count="4">
+          <div style="display: grid; grid-template-columns: 168px minmax(0, 1fr); gap: 28px; padding: 26px 0; border-top: 1px solid var(--line, rgba(255,255,255,0.08));">
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent, #2EE6A8); padding-top: 4px;">{{ t.period }}</div>
+            <div>
+              <strong style="display: block; font-family: 'Space Grotesk', sans-serif; font-size: 19px; font-weight: 600;">{{ t.role }}</strong>
+              <span style="display: block; font-size: 13.5px; color: var(--dim, #83868A); margin: 5px 0 10px; font-family: 'JetBrains Mono', monospace;">{{ t.org }}</span>
+              <span style="display: block; font-size: 15px; color: var(--muted, #9A9C9E); line-height: 1.65; max-width: 62ch;">{{ t.text }}</span>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section style="margin-top: 88px;">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); letter-spacing: 0.08em;">{{ t.stackKicker }}</div>
+      <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(26px, 3.4vw, 38px); letter-spacing: -0.03em; font-weight: 600; margin: 14px 0 28px;">{{ t.stackTitle }}</h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+        <sc-for list="{{ skills }}" as="k" hint-placeholder-count="16">
+          <span style="padding: 9px 16px; border: 1px solid var(--line2, rgba(255,255,255,0.12)); border-radius: 999px; font-size: 14px; color: var(--soft, #D6D7D8); background: var(--fill, rgba(255,255,255,0.03));">{{ k }}</span>
+        </sc-for>
+      </div>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); letter-spacing: 0.08em; margin: 40px 0 18px;">{{ t.alsoLabel }}</div>
+      <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+        <sc-for list="{{ exposedTo }}" as="k" hint-placeholder-count="7">
+          <span style="padding: 9px 16px; border: 1px solid rgba(46,230,168,0.28); border-radius: 999px; font-size: 14px; color: var(--accent, #2EE6A8);">{{ k }}</span>
+        </sc-for>
+      </div>
+    </section>
+
+    <section style="margin-top: 88px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 16px;">
+      <div style="padding: 30px 26px; border: 1px solid var(--line, rgba(255,255,255,0.08)); border-radius: 18px; background: var(--panel, #0C0D0F);">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); letter-spacing: 0.08em;">{{ t.pubKicker }}</div>
+        <strong style="display: block; font-family: 'Space Grotesk', sans-serif; font-size: 19px; font-weight: 600; margin: 14px 0 10px; line-height: 1.3;">{{ t.pubTitle }}</strong>
+        <span style="font-size: 14.5px; color: var(--muted, #9A9C9E); line-height: 1.6;">{{ t.pubText }}</span>
+      </div>
+      <div style="padding: 30px 26px; border: 1px solid var(--line, rgba(255,255,255,0.08)); border-radius: 18px; background: var(--panel, #0C0D0F);">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); letter-spacing: 0.08em;">{{ t.compKicker2 }}</div>
+        <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 16px;">
+          <sc-for list="{{ t.compLines }}" as="line" hint-placeholder-count="4">
+            <span style="font-size: 15px; color: var(--muted, #9A9C9E); line-height: 1.55;">{{ line }}</span>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+  </main>
+  </sc-if>
+
+  <sc-if value="{{ isProjetos }}" hint-placeholder-val="{{ false }}">
+  <main style="max-width: 1120px; margin: 0 auto; padding: 80px 24px 96px;">
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); letter-spacing: 0.08em;">{{ t.workKicker }}</div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 48px; align-items: end; margin-top: 18px;">
+      <h1 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(34px, 5vw, 60px); letter-spacing: -0.035em; font-weight: 600; line-height: 1.03; margin: 0;">{{ t.workTitle }}</h1>
+      <p style="color: var(--muted, #9A9C9E); font-size: 15.5px; line-height: 1.65; margin: 0;">{{ t.workLead }}</p>
+    </div>
+
+    <div style="display: flex; flex-direction: column; margin-top: 56px;">
+      <sc-for list="{{ projects }}" as="p" hint-placeholder-count="4">
+        <div style="display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 28px; padding: 40px 0; border-top: 1px solid var(--line, rgba(255,255,255,0.08));">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--dim, #83868A); padding-top: 6px;">{{ p.num }}</div>
+          <div>
+            <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 14px;">
+              <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(26px, 3.2vw, 36px); letter-spacing: -0.03em; font-weight: 600; margin: 0;">{{ p.title }}</h2>
+              <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent, #2EE6A8); padding: 5px 11px; border: 1px solid rgba(46,230,168,0.3); border-radius: 999px;">{{ p.status }}</span>
+            </div>
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--dim, #83868A); letter-spacing: 0.05em; margin-top: 10px;">{{ p.meta }}</div>
+            <p style="font-size: 16.5px; line-height: 1.68; color: var(--soft, #B4B6B8); max-width: 70ch; margin: 18px 0 0;">{{ p.description }}</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px;">
+              <sc-for list="{{ p.tags }}" as="t" hint-placeholder-count="4">
+                <span style="padding: 7px 13px; border-radius: 8px; background: var(--fill, rgba(255,255,255,0.05)); font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--soft, #C3C5C7);">{{ t }}</span>
+              </sc-for>
+            </div>
+            <sc-if value="{{ p.hasSource }}" hint-placeholder-val="{{ false }}">
+              <a href="{{ p.source }}" target="_blank" rel="noopener" style="display: inline-block; margin-top: 22px; font-size: 14.5px; font-weight: 600;">{{ t.sourceLink }}</a>
+            </sc-if>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+
+    <section id="contato" style="margin-top: 88px; padding: 48px 44px; border: 1px solid var(--line, rgba(255,255,255,0.08)); border-radius: 24px; background: var(--panel, #0C0D0F);">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 48px; align-items: start;">
+        <div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); letter-spacing: 0.08em;">{{ t.contactKicker }}</div>
+          <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(26px, 3.2vw, 38px); letter-spacing: -0.03em; font-weight: 600; margin: 14px 0 0; line-height: 1.1;">{{ t.contactTitle }}</h2>
+          <p style="color: var(--muted, #9A9C9E); font-size: 15.5px; line-height: 1.65; margin: 16px 0 0;">{{ t.contactText }}</p>
+          <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 28px; font-size: 14.5px;">
+            <a href="mailto:candido@techgamespi.com">candido@techgamespi.com</a>
+            <a href="https://wa.me/5586999474587">WhatsApp · (86) 99947-4587</a>
+            <a href="https://www.linkedin.com/in/josecandido1/">linkedin.com/in/josecandido1</a>
+          </div>
+        </div>
+
+        <form id="contact-form" style="display: grid; gap: 14px;">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px;">
+            <input type="text" name="nome" placeholder="{{ t.fName }}" required="true" style="padding: 14px 16px; border-radius: 12px; border: 1px solid var(--line2, rgba(255,255,255,0.12)); background: var(--fill, rgba(255,255,255,0.03)); color: var(--ink, #EDECE8); font-size: 15px; outline: none;" style-focus="border-color: rgba(46,230,168,0.6);" />
+            <input type="email" name="email" placeholder="{{ t.fEmail }}" required="true" style="padding: 14px 16px; border-radius: 12px; border: 1px solid var(--line2, rgba(255,255,255,0.12)); background: var(--fill, rgba(255,255,255,0.03)); color: var(--ink, #EDECE8); font-size: 15px; outline: none;" style-focus="border-color: rgba(46,230,168,0.6);" />
+          </div>
+          <input type="text" name="assunto" placeholder="{{ t.fSubject }}" style="padding: 14px 16px; border-radius: 12px; border: 1px solid var(--line2, rgba(255,255,255,0.12)); background: var(--fill, rgba(255,255,255,0.03)); color: var(--ink, #EDECE8); font-size: 15px; outline: none;" style-focus="border-color: rgba(46,230,168,0.6);" />
+          <textarea name="mensagem" rows="5" placeholder="{{ t.fMsg }}" required="true" style="padding: 14px 16px; border-radius: 12px; border: 1px solid var(--line2, rgba(255,255,255,0.12)); background: var(--fill, rgba(255,255,255,0.03)); color: var(--ink, #EDECE8); font-size: 15px; outline: none; resize: vertical; font-family: inherit;" style-focus="border-color: rgba(46,230,168,0.6);"></textarea>
+          <button type="submit" style="padding: 15px 26px; border-radius: 12px; border: none; background: var(--accent, #2EE6A8); color: var(--on-accent, #06140F); font-weight: 600; font-size: 15px; cursor: pointer;" style-hover="background: var(--accent2, #7DF3C9);">{{ t.fSend }}</button>
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); line-height: 1.6;">{{ formHint }}</span>
+        </form>
+      </div>
+    </section>
+  </main>
+  </sc-if>
+
+  <sc-if value="{{ isEmpresas }}" hint-placeholder-val="{{ false }}">
+  <main style="max-width: 1120px; margin: 0 auto; padding: 80px 24px 96px;">
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); letter-spacing: 0.08em;">{{ t.compKicker }}</div>
+    <h1 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(34px, 5vw, 60px); letter-spacing: -0.035em; font-weight: 600; line-height: 1.03; margin: 18px 0 0; max-width: 20ch;">{{ t.empTitle }}</h1>
+
+    <section style="margin-top: 72px; padding-top: 40px; border-top: 1px solid var(--line, rgba(255,255,255,0.08));">
+      <div style="display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;">
+        <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(30px, 4vw, 46px); letter-spacing: -0.03em; font-weight: 600; margin: 0;">ChatExpress</h2>
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent, #2EE6A8); padding: 5px 11px; border: 1px solid rgba(46,230,168,0.3); border-radius: 999px; letter-spacing: 0.05em;">{{ t.ceSub }}</span>
+      </div>
+      <p style="font-size: 19px; line-height: 1.65; color: var(--soft, #C3C5C7); max-width: 62ch; margin: 22px 0 0; text-wrap: pretty;">{{ t.ceLead }}</p>
+      <a href="https://chatexpress.com.br" target="_blank" rel="noopener" style="display: inline-block; margin-top: 16px; font-size: 15px; font-weight: 600;">chatexpress.com.br →</a>
+
+      <div style="margin-top: 52px;">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); letter-spacing: 0.08em;">{{ t.probKicker }}</div>
+        <p style="font-size: 16px; color: var(--muted, #9A9C9E); margin: 12px 0 24px; max-width: 66ch; line-height: 1.6;">{{ t.probLead }}</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px;">
+          <sc-for list="{{ problemas }}" as="p" hint-placeholder-count="3">
+            <div style="padding: 26px 24px; border: 1px solid var(--line, rgba(255,255,255,0.08)); border-radius: 16px; background: var(--fill, rgba(255,255,255,0.02));">
+              <strong style="display: block; font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 600; margin-bottom: 10px;">{{ p.title }}</strong>
+              <span style="font-size: 14.5px; color: var(--muted, #9A9C9E); line-height: 1.6;">{{ p.text }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="margin-top: 56px;">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); letter-spacing: 0.08em;">{{ t.benKicker }}</div>
+        <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(22px, 2.8vw, 30px); letter-spacing: -0.025em; font-weight: 600; margin: 12px 0 26px;">{{ t.benTitle }}</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1px; background: var(--line, rgba(255,255,255,0.08)); border: 1px solid var(--line, rgba(255,255,255,0.08)); border-radius: 16px; overflow: hidden;">
+          <sc-for list="{{ beneficios }}" as="b" hint-placeholder-count="6">
+            <div style="background: var(--panel, #0C0D0F); padding: 26px 24px; display: flex; gap: 12px; align-items: flex-start;">
+              <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent, #2EE6A8); margin-top: 8px; flex: none;"></span>
+              <span style="font-size: 15px; color: var(--soft, #C3C5C7); line-height: 1.6;">{{ b }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="margin-top: 56px;">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); letter-spacing: 0.08em;">{{ t.plansKicker }}</div>
+        <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(22px, 2.8vw, 30px); letter-spacing: -0.025em; font-weight: 600; margin: 12px 0 26px;">{{ t.plansTitle }}</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; align-items: start;">
+          <sc-for list="{{ planos }}" as="pl" hint-placeholder-count="4">
+            <div style="padding: 28px 24px; border: 1px solid var(--line, rgba(255,255,255,0.08)); border-radius: 18px; background: var(--panel, #0C0D0F); display: flex; flex-direction: column; gap: 14px;">
+              <strong style="font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 600;">{{ pl.name }}</strong>
+              <div>
+                <div style="font-family: 'Space Grotesk', sans-serif; font-size: 28px; letter-spacing: -0.025em; font-weight: 600;">{{ pl.price }}</div>
+                <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); margin-top: 8px; line-height: 1.5;">{{ pl.note }}</div>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 9px; padding-top: 14px; border-top: 1px solid var(--line, rgba(255,255,255,0.07));">
+                <sc-for list="{{ pl.items }}" as="it" hint-placeholder-count="5">
+                  <span style="font-size: 14px; color: var(--muted, #9A9C9E); line-height: 1.5;">{{ it }}</span>
+                </sc-for>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <section style="margin-top: 88px; padding-top: 40px; border-top: 1px solid var(--line, rgba(255,255,255,0.08));">
+      <div style="display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;">
+        <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(30px, 4vw, 46px); letter-spacing: -0.03em; font-weight: 600; margin: 0;">TechGamesPI</h2>
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #A78BFA; padding: 5px 11px; border: 1px solid rgba(167,139,250,0.3); border-radius: 999px; letter-spacing: 0.05em;">{{ t.tgBadge2 }}</span>
+      </div>
+      <p style="font-size: 19px; line-height: 1.65; color: var(--soft, #C3C5C7); max-width: 62ch; margin: 22px 0 0; text-wrap: pretty;">{{ t.tgLead }}</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 40px;">
+        <sc-for list="{{ servicosTech }}" as="s" hint-placeholder-count="4">
+          <div style="padding: 28px 24px; border: 1px solid var(--line, rgba(255,255,255,0.08)); border-radius: 16px; background: var(--fill, rgba(255,255,255,0.02)); transition: all 200ms ease;" style-hover="border-color: rgba(167,139,250,0.35); background: rgba(167,139,250,0.05);">
+            <strong style="display: block; font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 600; margin-bottom: 10px;">{{ s.title }}</strong>
+            <span style="font-size: 14.5px; color: var(--muted, #9A9C9E); line-height: 1.6;">{{ s.text }}</span>
+          </div>
+        </sc-for>
+      </div>
+      <a href="https://wa.me/5586999474587" target="_blank" rel="noopener" style="display: inline-block; margin-top: 32px; padding: 15px 30px; border-radius: 999px; background: var(--accent, #2EE6A8); color: var(--on-accent, #06140F); font-weight: 600; font-size: 15px;" style-hover="background: var(--accent2, #7DF3C9);">{{ t.tgCta }}</a>
+    </section>
+  </main>
+  </sc-if>
+
+  <footer style="border-top: 1px solid var(--line, rgba(255,255,255,0.07)); margin-top: 40px;">
+    <div style="max-width: 1120px; margin: 0 auto; padding: 56px 24px 32px;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 28px;">
+        <div style="display: flex; flex-direction: column; gap: 7px;">
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--dim, #83868A); letter-spacing: 0.08em;">E-MAIL</span>
+          <a href="mailto:candido@techgamespi.com" style="font-size: 15px;">candido@techgamespi.com</a>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 7px;">
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--dim, #83868A); letter-spacing: 0.08em;">WHATSAPP</span>
+          <a href="https://wa.me/5586999474587" target="_blank" rel="noopener" style="font-size: 15px;">(86) 99947-4587</a>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 7px;">
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--dim, #83868A); letter-spacing: 0.08em;">LINKEDIN</span>
+          <a href="https://www.linkedin.com/in/josecandido1/" target="_blank" rel="noopener" style="font-size: 15px;">@josecandido1</a>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 7px;">
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--dim, #83868A); letter-spacing: 0.08em;">GITHUB</span>
+          <a href="https://github.com/TECHGAMESPI" target="_blank" rel="noopener" style="font-size: 15px;">@TECHGAMESPI</a>
+        </div>
+      </div>
+      <div style="display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-size: 13.5px; color: var(--dim, #83868A); margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line, rgba(255,255,255,0.07));">
+        <span>© 2026 José Cândido · techgamespi.com</span>
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; letter-spacing: 0.05em;">{{ t.footKicker }}</span>
+      </div>
+    </div>
+  </footer>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const THEMES = {
+  dark: { bg: '#0A0B0C', panel: '#0C0D0F', ink: '#EDECE8', muted: '#9A9C9E', dim: '#83868A', soft: '#C3C5C7',
+    accent: '#2EE6A8', accent2: '#7DF3C9', onAccent: '#06140F',
+    line: 'rgba(255,255,255,0.08)', line2: 'rgba(255,255,255,0.16)', fill: 'rgba(255,255,255,0.03)',
+    dot: 'rgba(46,230,168,0.6)', web: 'rgba(255,255,255,0.26)', header: 'rgba(10,11,12,0.72)' },
+  light: { bg: '#F5F5F2', panel: '#FFFFFF', ink: '#15161A', muted: '#5E6268', dim: '#7A7E84', soft: '#3E4248',
+    accent: '#0B8F63', accent2: '#0A7A55', onAccent: '#FFFFFF',
+    line: 'rgba(0,0,0,0.10)', line2: 'rgba(0,0,0,0.16)', fill: 'rgba(0,0,0,0.025)',
+    dot: 'rgba(11,143,99,0.45)', web: 'rgba(0,0,0,0.14)', header: 'rgba(245,245,242,0.78)' }
+};
+
+const COPY = {
+  pt: {
+    kicker: 'SOFTWARE · INFRA · SEGURANÇA',
+    nav: ['Início', 'Sobre', 'Empresas', 'Projetos'],
+    wa: 'WhatsApp',
+    badge: 'DISPONÍVEL PARA PROJETOS E VAGAS',
+    h1a: 'Engenheiro de Software', h1b: 'Full Stack & CTO',
+    heroText: 'Atuação prática contínua desde 2021 no desenvolvimento de soluções web e backend, unindo visão técnica, arquitetura de sistemas e alinhamento com objetivos de negócio. Hoje como CTO da ChatExpress.',
+    btnProjects: 'Ver projetos', btnWa: 'Falar no WhatsApp', btnCv: 'CV sob solicitação',
+    cardTitle: 'EM UMA LINHA',
+    rows: [
+      { k: 'Formação', v: 'Eng. de Software · iCEV' },
+      { k: 'Pós-graduação', v: 'Cibersegurança · CESAR School' },
+      { k: 'Atuação desde', v: '2021 · 5 anos' },
+      { k: 'Cargo atual', v: 'CTO · ChatExpress' },
+      { k: 'Base', v: 'Teresina, PI · Brasil' },
+      { k: 'Idiomas', v: 'PT · EN · ES' }
+    ],
+    rReply: 'Resposta', vReply: 'em até 24h',
+    pillars: [
+      { n: '01', t: 'Software', d: 'Front-end, back-end, APIs e integrações.' },
+      { n: '02', t: 'Segurança', d: 'Cibersegurança aplicada ao produto e ao ambiente.' },
+      { n: '03', t: 'Infraestrutura', d: 'Linux, Windows, redes, servidores e Docker.' }
+    ],
+    svcKicker: 'SERVIÇOS', svcTitle: 'Como eu ajudo empresas e times.',
+    svcLead: 'Atuo tanto em contratação fixa quanto em projetos pontuais, com escopo e entrega definidos.',
+    services: [
+      { title: 'Aplicações web sob medida', text: 'Sistemas internos, painéis e plataformas construídos do zero, do banco à interface.' },
+      { title: 'APIs e integrações', text: 'Conexão entre sistemas, gateways de pagamento e serviços externos com documentação.' },
+      { title: 'Infraestrutura e deploy', text: 'Servidores Linux, Docker, redes e ambientes de produção estáveis e monitorados.' },
+      { title: 'Segurança e hardening', text: 'Revisão de configuração, controle de acesso e boas práticas de cibersegurança.' }
+    ],
+    compKicker: 'MINHAS EMPRESAS',
+    compTitle: 'Duas operações próprias, uma em software e outra em serviço técnico.',
+    compLink: 'Conhecer as empresas →',
+    ceSub: 'ATENDIMENTO OMNICHANNEL',
+    ceText: 'A nova forma de atendimento omnichannel para atender seus clientes em um só lugar. Times, automações de fluxo, protocolo, relatórios e NPS em uma única plataforma.',
+    tgBadge: 'SERVIÇO TÉCNICO',
+    tgSub: 'MANUTENÇÃO DE COMPUTADORES, CELULARES E VIDEOGAMES',
+    tgText: 'Assistência técnica com diagnóstico, reparo e upgrade de hardware — de notebooks e smartphones a consoles.',
+    projTitle: 'Projetos selecionados', projAll: 'Ver todos →',
+    ctaTitle: 'Tem um projeto ou uma vaga?',
+    ctaText: 'Me conte o contexto e eu respondo com uma proposta de caminho.',
+    ctaWa: 'Chamar no WhatsApp', ctaForm: 'Abrir formulário',
+    aboutKicker: 'SOBRE MIM',
+    aboutTitle: 'Construo soluções pensando além do código.',
+    aboutP1: 'Sou Engenheiro de Software, com atuação prática contínua desde 2021 no desenvolvimento de soluções web e backend, unindo visão técnica, arquitetura de sistemas e alinhamento com objetivos de negócio.',
+    aboutP2: 'Ao longo da minha trajetória, atuei como Desenvolvedor Full Stack, Estagiário de Desenvolvimento e atualmente como CTO, liderando decisões tecnológicas, integração de sistemas e construção de plataformas escaláveis. Tenho forte orientação à qualidade de código, segurança, desempenho e entrega de soluções funcionais.',
+    aboutP3: 'Perfil autodidata, com aprendizado rápido e foco em melhoria contínua. Aberto a oportunidades que envolvam desenvolvimento de software, backend e arquitetura de sistemas.',
+    aboutLoc: 'TERESINA, PI · BRASIL',
+    trajKicker: 'TRAJETÓRIA', trajTitle: 'Experiência e formação',
+    stackKicker: 'STACK PRINCIPAL', stackTitle: 'Tecnologias do dia a dia',
+    alsoLabel: 'TAMBÉM ATUO COM',
+    exposedTo: ['Arquitetura de sistemas', 'Cibersegurança', 'DevOps básico', 'Servidores Linux', 'WordPress', 'Magento', 'E-commerce'],
+    pubKicker: 'PUBLICAÇÃO',
+    pubTitle: 'RANSOMWARE: Análise de Impactos e Metodologia de Prevenção em Pequenas e Médias Empresas',
+    pubText: 'Artigo publicado em revista Qualis B2, sobre impactos de ransomware e metodologias de prevenção.',
+    compKicker2: 'IDIOMAS E COMPETÊNCIAS',
+    compLines: [
+      'Português nativo · Inglês e Espanhol em nível funcional, com leitura técnica.',
+      'Levantamento de requisitos e tradução em soluções técnicas.',
+      'Comunicação técnica clara com equipes e clientes.',
+      'Integração de sistemas e escalabilidade de plataformas.'
+    ],
+    timeline: [
+      { period: 'jun 2023 — atual', role: 'CTO / Diretor de Tecnologia', org: 'ChatExpress · Teresina, PI',
+        text: 'Definição da arquitetura e do roadmap tecnológico da plataforma omnichannel. Liderança técnica do desenvolvimento backend e frontend com Ruby on Rails, Vue.js, JavaScript e Golang, modelagem de bancos PostgreSQL e SQLite, padronização de boas práticas e decisões voltadas à escalabilidade, desempenho e segurança.' },
+      { period: 'set 2024 — nov 2025', role: 'Desenvolvedor Full Stack Júnior', org: 'Retake Brasil',
+        text: 'Desenvolvimento de plataforma para escritórios de advocacia especializados em recuperação de crédito, com Python (Django) e integração com sistemas externos, implementando novas funcionalidades e evoluindo a solução conforme feedback dos usuários.' },
+      { period: '2024 — 2025', role: 'Estagiário de Desenvolvimento', org: 'Seplan · Secretaria de Planejamento do Estado do Piauí',
+        text: 'Desenvolvimento e manutenção de aplicações web, suporte às equipes de desenvolvimento e à operação de servidores Linux, além de apoio em rotinas de DevOps e sistemas internos.' },
+      { period: '2023 — 2024', role: 'Desenvolvedor Web', org: 'Fábrica de Gênios',
+        text: 'Criação e manutenção de sites institucionais com WordPress, JavaScript, Python e TypeScript, operação de servidores Linux e melhorias técnicas em sistemas e lojas virtuais.' },
+      { period: '2021 — atual', role: 'Desenvolvedor Full Stack · Freelancer', org: 'Clientes diversos',
+        text: 'Aplicações web com PHP (Laravel), WordPress, JavaScript e Node.js, APIs REST e backends em Python (Django), integração com bancos SQL e atendimento direto a clientes, do levantamento de requisitos à entrega.' },
+      { period: '2023 — atual', role: 'Instrutor de Informática · Técnico em Manutenção', org: 'Aulas particulares · Autônomo',
+        text: 'Ensino de informática básica para adultos, com foco em autonomia digital, e manutenção preventiva e corretiva de computadores, incluindo instalação de sistemas e otimização de desempenho.' },
+      { period: 'Pós-graduação', role: 'Especialização em Cibersegurança', org: 'CESAR School',
+        text: 'Pós-graduação em cibersegurança, com foco em segurança da informação, prevenção e resposta a incidentes — base do artigo publicado sobre ransomware.' },
+      { period: '2022 — 2025', role: 'Bacharelado em Engenharia de Software', org: 'iCEV · Instituto de Ensino Superior',
+        text: 'Formação em engenharia de software, arquitetura de sistemas e boas práticas de desenvolvimento. Ensino médio no CEV Colégio (2019—2021).' }
+    ],
+    workKicker: 'TRABALHOS SELECIONADOS',
+    workTitle: 'Projetos construídos para problemas reais.',
+    workLead: 'Uma seleção que reúne produto, automação, operações e desenvolvimento full stack — com decisões técnicas orientadas ao uso no mundo real.',
+    sourceLink: 'Ver código no GitHub →',
+    projects: [
+      { title: 'VoaFácil', category: 'Produto digital', year: '2026', status: 'Em desenvolvimento',
+        description: 'Plataforma de busca e comparação de passagens aéreas com filtros em tempo real, rotas compartilháveis, integração com a Travelpayouts e cobertura de testes.',
+        tags: ['Next.js 16', 'TypeScript', 'React 19', 'APIs', 'Vitest'] },
+      { title: 'Javis Control', category: 'Game house · Operações', year: '2026', status: 'Produto proprietário',
+        description: 'Sistema completo para operação de game houses, com gestão de máquinas e sessões, saldo de tempo, vendas, caixa, controle parental e agente Windows instalado nas estações.',
+        tags: ['Laravel 12', 'Electron', 'MySQL', 'Redis', 'JWT'] },
+      { title: 'Chamada EBD', category: 'Gestão · Comunidade', year: '2024', status: 'Código aberto',
+        description: 'Sistema para gestão de presença na Escola Bíblica Dominical, com perfis de acesso, turmas, visitantes e gamificação por frequência.',
+        tags: ['Laravel', 'PHP', 'JavaScript', 'MySQL'], source: 'https://github.com/TECHGAMESPI/chamada-ebd' },
+      { title: 'LuminaFlow', category: 'Automação financeira', year: '2025', status: 'MVP colaborativo',
+        description: 'MVP de automação e insights financeiros com uma API que simula o fluxo Stripe–Omie, documentação técnica e execução conteinerizada.',
+        tags: ['Python', 'FastAPI', 'Docker', 'REST API'], source: 'https://github.com/TECHGAMESPI/luminaflow' }
+    ],
+    contactKicker: 'CONTATO', contactTitle: 'Vamos conversar.',
+    contactText: 'Preencha o formulário ou fale direto pelos canais abaixo. Respondo em até 24 horas.',
+    fName: 'Seu nome', fEmail: 'Seu e-mail', fSubject: 'Assunto (vaga, orçamento, parceria...)',
+    fMsg: 'Conte um pouco sobre o projeto ou a oportunidade', fSend: 'Enviar pelo WhatsApp',
+    hintSent: 'Abrindo o WhatsApp com a mensagem preenchida.',
+    hintIdle: 'Ao enviar, a mensagem será preparada e aberta diretamente no WhatsApp.',
+    empTitle: 'Software que organiza e serviço que resolve.',
+    ceLead: 'A nova forma de atendimento omnichannel para atender seus clientes em um só lugar.',
+    probKicker: 'O PROBLEMA', probLead: 'Mais de 90% das empresas sofrem com os mesmos pontos:',
+    problemas: [
+      { title: 'Trabalho maçante', text: 'Atendimento repetitivo, desorganizado e descentralizado.' },
+      { title: 'Muitos locais de atendimento', text: 'Muitas plataformas e locais para receber as mensagens e realizar o atendimento.' },
+      { title: 'Organização e automação', text: 'Mensagens bagunçadas e sem identificação de atendimento.' }
+    ],
+    benKicker: 'BENEFÍCIOS', benTitle: 'Uma grande quantidade de serviços ao seu dispor',
+    beneficios: [
+      'Chat omnichannel com diversas integrações.',
+      'Envio de múltiplos documentos, fotos, vídeos e áudios.',
+      'Dashboards detalhados e NPS.',
+      'Importe facilmente sua agenda de contatos e exporte quando preferir.',
+      'Organize suas equipes, e torne-as mais eficientes.',
+      'Automação de fluxos e mensagens, além de anexos de arquivos.'
+    ],
+    plansKicker: 'PLANOS', plansTitle: 'Assinatura mensal, com agentes adicionais a R$ 53,99',
+    planos: [
+      { name: 'Essencial', price: 'R$ 192,90', note: '3 agentes · 1 caixa de entrada',
+        items: ['WhatsApp (1 número integrado)', 'Criar times', 'Identificação do atendente', 'Atalhos e marcadores', 'Gerador de protocolo', 'Robô para autoatendimento', 'NPS e relatórios', 'Suporte via plataforma'] },
+      { name: 'Intermediário', price: 'R$ 431,90', note: '8 agentes · 3 caixas de entrada',
+        items: ['Tudo do Essencial', 'WhatsApp, Telegram, Line', 'Website LiveChat', 'E-mail e SMS', 'Facebook/Instagram (em breve)', 'Suporte prioritário via WhatsApp'] },
+      { name: 'Empresarial', price: 'R$ 1079,90', note: '20 agentes · 6 caixas de entrada',
+        items: ['Tudo do Intermediário', 'Integrações: Google Translate', 'Chat OpenAI', 'DialogFlow', 'Suporte prioritário via WhatsApp'] },
+      { name: 'Personalizado', price: 'Sob consulta', note: 'Agentes e caixas personalizáveis',
+        items: ['Tudo do Empresarial', 'Suporte em videochamada', 'Consultoria para criação de automações'] }
+    ],
+    tgBadge2: 'MANUTENÇÃO EM INFORMÁTICA',
+    tgLead: 'Projeto de manutenção em informática em geral: computadores, celulares e videogames, com diagnóstico honesto e prazo claro.',
+    servicosTech: [
+      { title: 'Computadores e notebooks', text: 'Diagnóstico, formatação, troca de peças, limpeza, upgrade de SSD e memória.' },
+      { title: 'Celulares', text: 'Troca de tela e bateria, reparo de conectores e recuperação de sistema.' },
+      { title: 'Videogames', text: 'Manutenção de consoles: limpeza, troca de térmica, reparo de drives e controles.' },
+      { title: 'Redes e suporte', text: 'Instalação de redes, servidores, backup e suporte técnico para empresas.' }
+    ],
+    tgCta: 'Solicitar orçamento no WhatsApp',
+    footKicker: 'SOFTWARE · INFRAESTRUTURA · SEGURANÇA'
+  },
+  en: {
+    kicker: 'SOFTWARE · INFRA · SECURITY',
+    nav: ['Home', 'About', 'Companies', 'Projects'],
+    wa: 'WhatsApp',
+    badge: 'AVAILABLE FOR PROJECTS AND ROLES',
+    h1a: 'Software Engineer', h1b: 'Full Stack & CTO',
+    heroText: 'Working continuously since 2021 on web and backend solutions, combining technical vision, systems architecture and alignment with business goals. Currently CTO at ChatExpress.',
+    btnProjects: 'See projects', btnWa: 'Message on WhatsApp', btnCv: 'CV on request',
+    cardTitle: 'AT A GLANCE',
+    rows: [
+      { k: 'Degree', v: 'Software Eng. · iCEV' },
+      { k: 'Postgraduate', v: 'Cybersecurity · CESAR School' },
+      { k: 'Working since', v: '2021 · 5 years' },
+      { k: 'Current role', v: 'CTO · ChatExpress' },
+      { k: 'Based in', v: 'Teresina, PI · Brazil' },
+      { k: 'Languages', v: 'PT · EN · ES' }
+    ],
+    rReply: 'Reply time', vReply: 'within 24h',
+    pillars: [
+      { n: '01', t: 'Software', d: 'Front-end, back-end, APIs and integrations.' },
+      { n: '02', t: 'Security', d: 'Cybersecurity applied to the product and the environment.' },
+      { n: '03', t: 'Infrastructure', d: 'Linux, Windows, networks, servers and Docker.' }
+    ],
+    svcKicker: 'SERVICES', svcTitle: 'How I help companies and teams.',
+    svcLead: 'Available for full-time roles and for scoped projects with clear deliverables.',
+    services: [
+      { title: 'Custom web applications', text: 'Internal systems, dashboards and platforms built from scratch, from database to interface.' },
+      { title: 'APIs and integrations', text: 'Connecting systems, payment gateways and external services, with documentation.' },
+      { title: 'Infrastructure and deployment', text: 'Linux servers, Docker, networks and stable, monitored production environments.' },
+      { title: 'Security and hardening', text: 'Configuration review, access control and cybersecurity best practices.' }
+    ],
+    compKicker: 'MY COMPANIES',
+    compTitle: 'Two operations of my own: one in software, one in technical service.',
+    compLink: 'See the companies →',
+    ceSub: 'OMNICHANNEL CUSTOMER SUPPORT',
+    ceText: 'A new way to run omnichannel support and serve your customers in one place. Teams, flow automation, ticket protocols, reports and NPS in a single platform.',
+    tgBadge: 'TECHNICAL SERVICE',
+    tgSub: 'COMPUTER, PHONE AND CONSOLE REPAIR',
+    tgText: 'Technical service with diagnosis, repair and hardware upgrades — from laptops and smartphones to consoles.',
+    projTitle: 'Selected projects', projAll: 'See all →',
+    ctaTitle: 'Have a project or a role?',
+    ctaText: 'Tell me the context and I will reply with a proposed path.',
+    ctaWa: 'Message on WhatsApp', ctaForm: 'Open the form',
+    aboutKicker: 'ABOUT ME',
+    aboutTitle: 'I build solutions that look beyond the code.',
+    aboutP1: 'I am a Software Engineer working continuously since 2021 on web and backend solutions, combining technical vision, systems architecture and alignment with business goals.',
+    aboutP2: 'Along the way I have worked as a Full Stack Developer, a Development Intern and now as CTO, leading technology decisions, systems integration and the building of scalable platforms. I care strongly about code quality, security, performance and shipping solutions that work.',
+    aboutP3: 'Self-taught, fast learner and focused on continuous improvement. Open to opportunities in software development, backend and systems architecture.',
+    aboutLoc: 'TERESINA, PI · BRAZIL',
+    trajKicker: 'BACKGROUND', trajTitle: 'Experience and education',
+    stackKicker: 'CORE STACK', stackTitle: 'Day-to-day technologies',
+    alsoLabel: 'ALSO WORKING WITH',
+    exposedTo: ['Systems architecture', 'Cybersecurity', 'Basic DevOps', 'Linux servers', 'WordPress', 'Magento', 'E-commerce'],
+    pubKicker: 'PUBLICATION',
+    pubTitle: 'RANSOMWARE: Impact Analysis and Prevention Methodology for Small and Medium-Sized Companies',
+    pubText: 'Paper published in a Qualis B2 journal on ransomware impacts and prevention methodologies.',
+    compKicker2: 'LANGUAGES AND STRENGTHS',
+    compLines: [
+      'Native Portuguese · Professional working English and Spanish, with technical reading.',
+      'Requirements gathering, translated into technical solutions.',
+      'Clear technical communication with teams and clients.',
+      'Systems integration and platform scalability.'
+    ],
+    timeline: [
+      { period: 'Jun 2023 — present', role: 'CTO / Head of Technology', org: 'ChatExpress · Teresina, PI',
+        text: 'Defining the architecture and technology roadmap of the omnichannel platform. Technical leadership of backend and frontend development with Ruby on Rails, Vue.js, JavaScript and Golang, PostgreSQL and SQLite data modelling, development standards, and decisions driven by scalability, performance and security.' },
+      { period: 'Sep 2024 — Nov 2025', role: 'Junior Full Stack Developer', org: 'Retake Brasil',
+        text: 'Built a platform for law firms specialised in credit recovery, using Python (Django) with external system integrations, shipping new features and evolving the product based on user feedback.' },
+      { period: '2024 — 2025', role: 'Development Intern', org: 'Seplan · Planning Secretariat of the State of Piauí',
+        text: 'Development and maintenance of web applications, support to development teams and Linux server operations, plus help with DevOps routines and internal systems.' },
+      { period: '2023 — 2024', role: 'Web Developer', org: 'Fábrica de Gênios',
+        text: 'Built and maintained institutional websites with WordPress, JavaScript, Python and TypeScript, ran Linux servers and delivered technical improvements to systems and online stores.' },
+      { period: '2021 — present', role: 'Full Stack Developer · Freelance', org: 'Various clients',
+        text: 'Web applications with PHP (Laravel), WordPress, JavaScript and Node.js, REST APIs and backends in Python (Django), SQL database integration and direct client work from requirements to delivery.' },
+      { period: '2023 — present', role: 'IT Instructor · Computer Repair Technician', org: 'Private lessons · Self-employed',
+        text: 'Teaching basic computing to adults with a focus on digital autonomy, plus preventive and corrective computer maintenance, including system installation and performance tuning.' },
+      { period: 'Postgraduate', role: 'Specialisation in Cybersecurity', org: 'CESAR School',
+        text: 'Postgraduate studies in cybersecurity focused on information security, prevention and incident response — the basis of the published ransomware paper.' },
+      { period: '2022 — 2025', role: 'BSc in Software Engineering', org: 'iCEV · Instituto de Ensino Superior',
+        text: 'Degree in software engineering, systems architecture and development best practices. Secondary education at CEV Colégio (2019—2021).' }
+    ],
+    workKicker: 'SELECTED WORK',
+    workTitle: 'Projects built for real problems.',
+    workLead: 'A selection spanning product, automation, operations and full stack development — with technical decisions driven by real-world use.',
+    sourceLink: 'View code on GitHub →',
+    projects: [
+      { title: 'VoaFácil', category: 'Digital product', year: '2026', status: 'In development',
+        description: 'Flight search and comparison platform with real-time filters, shareable routes, Travelpayouts integration and test coverage.',
+        tags: ['Next.js 16', 'TypeScript', 'React 19', 'APIs', 'Vitest'] },
+      { title: 'Javis Control', category: 'Game house · Operations', year: '2026', status: 'Proprietary product',
+        description: 'Complete system for running game houses: machine and session management, time balance, sales, cash register, parental control and a Windows agent installed on each station.',
+        tags: ['Laravel 12', 'Electron', 'MySQL', 'Redis', 'JWT'] },
+      { title: 'Chamada EBD', category: 'Management · Community', year: '2024', status: 'Open source',
+        description: 'Attendance management system for Sunday school, with access profiles, classes, visitors and attendance-based gamification.',
+        tags: ['Laravel', 'PHP', 'JavaScript', 'MySQL'], source: 'https://github.com/TECHGAMESPI/chamada-ebd' },
+      { title: 'LuminaFlow', category: 'Financial automation', year: '2025', status: 'Collaborative MVP',
+        description: 'MVP for financial automation and insights, with an API simulating the Stripe–Omie flow, technical documentation and containerised execution.',
+        tags: ['Python', 'FastAPI', 'Docker', 'REST API'], source: 'https://github.com/TECHGAMESPI/luminaflow' }
+    ],
+    contactKicker: 'CONTACT', contactTitle: 'Let us talk.',
+    contactText: 'Fill in the form or reach me directly through the channels below. I reply within 24 hours.',
+    fName: 'Your name', fEmail: 'Your email', fSubject: 'Subject (role, quote, partnership...)',
+    fMsg: 'Tell me a bit about the project or the opportunity', fSend: 'Send via WhatsApp',
+    hintSent: 'Opening WhatsApp with your message filled in.',
+    hintIdle: 'Submitting prepares the message and opens it directly in WhatsApp.',
+    empTitle: 'Software that organises and service that fixes.',
+    ceLead: 'A new way to run omnichannel support and serve your customers in one place.',
+    probKicker: 'THE PROBLEM', probLead: 'More than 90% of companies struggle with the same things:',
+    problemas: [
+      { title: 'Repetitive work', text: 'Support that is repetitive, disorganised and decentralised.' },
+      { title: 'Too many channels', text: 'Too many platforms and places to receive messages and handle conversations.' },
+      { title: 'Organisation and automation', text: 'Messy messages with no record of who handled them.' }
+    ],
+    benKicker: 'BENEFITS', benTitle: 'A wide range of services at your disposal',
+    beneficios: [
+      'Omnichannel chat with multiple integrations.',
+      'Send multiple documents, photos, videos and audio.',
+      'Detailed dashboards and NPS.',
+      'Import your contact list easily and export whenever you want.',
+      'Organise your teams and make them more efficient.',
+      'Flow and message automation, with file attachments.'
+    ],
+    plansKicker: 'PLANS', plansTitle: 'Monthly subscription, extra agents at R$ 53.99',
+    planos: [
+      { name: 'Essential', price: 'R$ 192.90', note: '3 agents · 1 inbox',
+        items: ['WhatsApp (1 connected number)', 'Create teams', 'Agent identification', 'Shortcuts and labels', 'Ticket protocol generator', 'Self-service bot', 'NPS and reports', 'Support via platform'] },
+      { name: 'Intermediate', price: 'R$ 431.90', note: '8 agents · 3 inboxes',
+        items: ['Everything in Essential', 'WhatsApp, Telegram, Line', 'Website LiveChat', 'Email and SMS', 'Facebook/Instagram (soon)', 'Priority support via WhatsApp'] },
+      { name: 'Business', price: 'R$ 1,079.90', note: '20 agents · 6 inboxes',
+        items: ['Everything in Intermediate', 'Integrations: Google Translate', 'OpenAI chat', 'DialogFlow', 'Priority support via WhatsApp'] },
+      { name: 'Custom', price: 'On request', note: 'Custom agents and inboxes',
+        items: ['Everything in Business', 'Video call support', 'Consulting to build automations'] }
+    ],
+    tgBadge2: 'COMPUTER REPAIR',
+    tgLead: 'General computer repair: desktops, laptops, phones and consoles, with honest diagnosis and a clear turnaround.',
+    servicosTech: [
+      { title: 'Computers and laptops', text: 'Diagnosis, reinstall, part replacement, cleaning, SSD and memory upgrades.' },
+      { title: 'Phones', text: 'Screen and battery replacement, connector repair and system recovery.' },
+      { title: 'Consoles', text: 'Console maintenance: cleaning, thermal paste, drive and controller repair.' },
+      { title: 'Networks and support', text: 'Network and server setup, backups and technical support for businesses.' }
+    ],
+    tgCta: 'Request a quote on WhatsApp',
+    footKicker: 'SOFTWARE · INFRASTRUCTURE · SECURITY'
+  }
+};
+
+class Component extends DCLogic {
+  state = { page: 'home', sent: false, theme: 'dark', lang: 'pt' };
+
+  componentDidMount() {
+    let saved = null;
+    try { saved = localStorage.getItem('jc-theme'); } catch (e) {}
+    if (saved === 'light' || saved === 'dark') this.setState({ theme: saved });
+    let lang = 'pt';
+    try { lang = localStorage.getItem('jc-lang'); } catch (e) {}
+    if (lang !== 'en') lang = 'pt';
+    this.setState({ lang: lang });
+    document.documentElement.lang = lang === 'en' ? 'en' : 'pt-BR';
+    this.applyBodyBg(saved === 'light' ? 'light' : this.state.theme);
+    this.startBackground();
+    this.onHashChange = () => {
+      const requested = window.location.hash.replace('#', '') || 'home';
+      const allowed = ['home', 'sobre', 'empresas', 'projetos'];
+      const page = requested === 'contato' ? 'projetos' : (allowed.includes(requested) ? requested : 'home');
+      if (page !== this.state.page) this.setState({ page });
+      if (requested === 'contato') requestAnimationFrame(() => {
+        const el = document.getElementById('contato');
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    };
+    window.addEventListener('hashchange', this.onHashChange);
+    this.onControlClick = (event) => {
+      if (event.target.closest('#theme-toggle')) {
+        event.preventDefault();
+        this.toggle();
+      }
+      if (event.target.closest('#language-toggle')) {
+        event.preventDefault();
+        this.toggleLang();
+      }
+    };
+    document.addEventListener('click', this.onControlClick);
+    this.onHashChange();
+    this.applyThemeVars(saved === 'light' ? 'light' : this.state.theme);
+    this.bindControls();
+    this.observed = new WeakSet();
+    this.setupReveal();
+    this._prev = { page: this.state.page, theme: this.state.theme };
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const ps = prevState || this._prev || {};
+    if (ps.page !== this.state.page) this.setupReveal();
+    if (ps.theme !== this.state.theme) {
+      this.applyBodyBg(this.state.theme);
+      this.applyThemeVars(this.state.theme);
+    }
+    this.bindControls();
+    this._prev = { page: this.state.page, theme: this.state.theme };
+  }
+
+  componentWillUnmount() {
+    cancelAnimationFrame(this.raf);
+    if (this.onMove) window.removeEventListener('mousemove', this.onMove);
+    if (this.onResize) window.removeEventListener('resize', this.onResize);
+    if (this.onHashChange) window.removeEventListener('hashchange', this.onHashChange);
+    if (this.onControlClick) document.removeEventListener('click', this.onControlClick);
+    if (this.io) this.io.disconnect();
+  }
+
+  applyBodyBg(theme) {
+    document.body.style.background = THEMES[theme].bg;
+    document.body.style.color = THEMES[theme].ink;
+  }
+
+  applyThemeVars(theme) {
+    requestAnimationFrame(() => {
+      const root = document.getElementById('theme-root');
+      if (!root) return;
+      const values = THEMES[theme];
+      const names = {
+        bg: '--bg', panel: '--panel', ink: '--ink', muted: '--muted', dim: '--dim',
+        soft: '--soft', accent: '--accent', accent2: '--accent2', onAccent: '--on-accent',
+        line: '--line', line2: '--line2', fill: '--fill', header: '--header'
+      };
+      Object.keys(names).forEach((key) => root.style.setProperty(names[key], values[key]));
+    });
+  }
+
+  toggle() {
+    const next = this.state.theme === 'dark' ? 'light' : 'dark';
+    try { localStorage.setItem('jc-theme', next); } catch (e) {}
+    this.applyBodyBg(next);
+    this.setState({ theme: next });
+  }
+
+  toggleLang() {
+    const next = this.state.lang === 'pt' ? 'en' : 'pt';
+    try { localStorage.setItem('jc-lang', next); } catch (e) {}
+    document.documentElement.lang = next === 'en' ? 'en' : 'pt-BR';
+    this.setState({ lang: next });
+  }
+
+  bindControls() {
+    requestAnimationFrame(() => {
+      const form = document.getElementById('contact-form');
+      if (form && !form.dataset.bound) {
+        form.dataset.bound = 'true';
+        form.addEventListener('submit', (event) => {
+          event.preventDefault();
+          const name = form.nome.value;
+          const email = form.email.value;
+          const isPortuguese = this.state.lang === 'pt';
+          const subject = form.assunto.value || (isPortuguese ? 'Contato pelo site' : 'Contact from the website');
+          const message = form.mensagem.value;
+          const body = '*' + subject + '*\n\n' + (isPortuguese ? 'Nome: ' : 'Name: ') + name + '\nEmail: ' + email + '\n\n' + message;
+          window.open('https://wa.me/5586999474587?text=' + encodeURIComponent(body), '_blank', 'noopener');
+          this.setState({ sent: true });
+        });
+      }
+    });
+  }
+
+  setupReveal() {
+    if (!this.io) {
+      this.io = new IntersectionObserver((entries) => {
+        entries.forEach((en) => {
+          if (en.isIntersecting) {
+            en.target.style.opacity = '1';
+            en.target.style.transform = 'none';
+            this.io.unobserve(en.target);
+          }
+        });
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.04 });
+    }
+    requestAnimationFrame(() => {
+      document.querySelectorAll('main > section, main > div').forEach((el) => {
+        if (this.observed.has(el)) return;
+        this.observed.add(el);
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(14px)';
+        el.style.transition = 'opacity 620ms cubic-bezier(.22,.8,.3,1), transform 620ms cubic-bezier(.22,.8,.3,1)';
+        this.io.observe(el);
+      });
+    });
+  }
+
+  startBackground() {
+    const canvas = this.canvas;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let w = 0, h = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const pts = [];
+    const mouse = { x: -9999, y: -9999 };
+
+    const resize = () => {
+      w = window.innerWidth; h = window.innerHeight;
+      canvas.width = w * dpr; canvas.height = h * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const target = Math.min(78, Math.round((w * h) / 16000));
+      while (pts.length < target) pts.push({ x: Math.random() * w, y: Math.random() * h, vx: (Math.random() - .5) * .22, vy: (Math.random() - .5) * .22 });
+      while (pts.length > target) pts.pop();
+    };
+    this.onResize = resize;
+    this.onMove = (e) => { mouse.x = e.clientX; mouse.y = e.clientY; };
+    window.addEventListener('resize', resize);
+    window.addEventListener('mousemove', this.onMove, { passive: true });
+    resize();
+
+    const frame = () => {
+      const t = THEMES[this.state.theme];
+      ctx.clearRect(0, 0, w, h);
+      for (const p of pts) {
+        const dx = p.x - mouse.x, dy = p.y - mouse.y;
+        const d2 = dx * dx + dy * dy;
+        if (d2 < 24000 && d2 > 0.5) {
+          const f = (1 - d2 / 24000) * 0.42, d = Math.sqrt(d2);
+          p.vx += (dx / d) * f * 0.5;
+          p.vy += (dy / d) * f * 0.5;
+        }
+        p.vx *= 0.985; p.vy *= 0.985;
+        const sp = Math.hypot(p.vx, p.vy);
+        if (sp < 0.12) { p.vx += (Math.random() - .5) * 0.05; p.vy += (Math.random() - .5) * 0.05; }
+        if (sp > 1.6) { p.vx *= 0.9; p.vy *= 0.9; }
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < -20) p.x = w + 20; if (p.x > w + 20) p.x = -20;
+        if (p.y < -20) p.y = h + 20; if (p.y > h + 20) p.y = -20;
+      }
+      for (let i = 0; i < pts.length; i++) {
+        for (let j = i + 1; j < pts.length; j++) {
+          const dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y;
+          const d2 = dx * dx + dy * dy;
+          if (d2 < 17000) {
+            ctx.globalAlpha = (1 - d2 / 17000) * 0.5;
+            ctx.strokeStyle = t.web;
+            ctx.lineWidth = 1;
+            ctx.beginPath(); ctx.moveTo(pts[i].x, pts[i].y); ctx.lineTo(pts[j].x, pts[j].y); ctx.stroke();
+          }
+        }
+      }
+      for (const p of pts) {
+        const dm = Math.hypot(p.x - mouse.x, p.y - mouse.y);
+        if (dm < 190) {
+          ctx.globalAlpha = (1 - dm / 190) * 0.55;
+          ctx.strokeStyle = t.dot;
+          ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(mouse.x, mouse.y); ctx.stroke();
+        }
+        ctx.globalAlpha = 0.85;
+        ctx.fillStyle = dm < 190 ? t.dot : t.web;
+        ctx.beginPath(); ctx.arc(p.x, p.y, 1.6, 0, Math.PI * 2); ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+      this.raf = requestAnimationFrame(frame);
+    };
+    this.raf = requestAnimationFrame(frame);
+  }
+
+  go(page) {
+    this.setState({ page });
+    window.scrollTo(0, 0);
+  }
+
+  navStyle(active) {
+    return 'padding: 9px 15px; border-radius: 999px; border: 1px solid ' +
+      (active ? 'var(--line2, rgba(255,255,255,0.16))' : 'transparent') +
+      '; background: ' + (active ? 'var(--line, rgba(255,255,255,0.06))' : 'transparent') +
+      '; color: ' + (active ? 'var(--ink, #EDECE8)' : 'var(--muted, #9A9C9E)') +
+      '; font-size: 14px; font-weight: 500; cursor: pointer;';
+  }
+
+  renderVals() {
+    const page = this.state.page;
+    const t = COPY[this.state.lang];
+    const projects = t.projects.map((p, i) => Object.assign({}, p, {
+      num: String(i + 1).padStart(2, '0'),
+      slotId: 'proj-' + (i + 1),
+      meta: p.category.toUpperCase() + ' · ' + p.year,
+      hasSource: !!p.source,
+      source: p.source || '#'
+    }));
+
+    const th = THEMES[this.state.theme];
+    return {
+      t: t,
+      langLabel: this.state.lang === 'pt' ? 'EN' : 'PT',
+      cvMailto: 'mailto:candido@techgamespi.com?subject=' + encodeURIComponent(this.state.lang === 'pt' ? 'Currículo' : 'CV request'),
+      toggleLang: () => this.toggleLang(),
+      bgRef: (el) => { this.canvas = el; },
+      themeVars: {
+        color: th.ink,
+        '--bg': th.bg, '--panel': th.panel, '--ink': th.ink, '--muted': th.muted, '--dim': th.dim,
+        '--soft': th.soft, '--accent': th.accent, '--accent2': th.accent2, '--on-accent': th.onAccent,
+        '--line': th.line, '--line2': th.line2, '--fill': th.fill, '--header': th.header
+      },
+      themeIcon: this.state.theme === 'dark' ? '☾' : '☀',
+      toggleTheme: () => this.toggle(),
+      isHome: page === 'home',
+      isSobre: page === 'sobre',
+      isProjetos: page === 'projetos',
+      isEmpresas: page === 'empresas',
+      navHome: t.nav[0],
+      navAbout: t.nav[1],
+      navCompanies: t.nav[2],
+      navProjects: t.nav[3],
+      navItems: [
+        { label: t.nav[0], active: page === 'home', onClick: () => this.go('home') },
+        { label: t.nav[1], active: page === 'sobre', onClick: () => this.go('sobre') },
+        { label: t.nav[2], active: page === 'empresas', onClick: () => this.go('empresas') },
+        { label: t.nav[3], active: page === 'projetos', onClick: () => this.go('projetos') }
+      ],
+      goEmpresas: () => this.go('empresas'),
+      problemas: t.problemas,
+      beneficios: t.beneficios,
+      planos: t.planos,
+      servicosTech: t.servicosTech,
+      goHome: () => this.go('home'),
+      goProjetos: () => this.go('projetos'),
+      goContato: () => {
+        this.setState({ page: 'projetos' }, () => {
+          const el = document.getElementById('contato');
+          if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth' });
+        });
+      },
+      projects,
+      featured: projects.slice(0, 2),
+      services: t.services,
+      skills: ['Python', 'Django', 'PHP', 'Laravel', 'Ruby on Rails', 'JavaScript', 'Vue.js', 'Node.js', 'TypeScript', 'Golang', 'APIs REST', 'PostgreSQL', 'SQLite', 'Docker', 'Linux', 'Git'],
+      exposedTo: t.exposedTo,
+      timeline: t.timeline,
+      formHint: this.state.sent ? t.hintSent : t.hintIdle
+    };
+  }
+}
+</script>
+</body>
 </html>
