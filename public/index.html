@@ -31,7 +31,7 @@
 </style>
 </helmet>
 
-<div style="{{ themeVars }}">
+<div id="theme-root" style="{{ themeVars }}">
 <canvas ref="{{ bgRef }}" style="position: fixed; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; background: var(--bg, #0A0B0C);"></canvas>
 
 <div style="min-height: 100vh; position: relative; background:
@@ -768,7 +768,19 @@ class Component extends DCLogic {
       });
     };
     window.addEventListener('hashchange', this.onHashChange);
+    this.onControlClick = (event) => {
+      if (event.target.closest('#theme-toggle')) {
+        event.preventDefault();
+        this.toggle();
+      }
+      if (event.target.closest('#language-toggle')) {
+        event.preventDefault();
+        this.toggleLang();
+      }
+    };
+    document.addEventListener('click', this.onControlClick);
     this.onHashChange();
+    this.applyThemeVars(saved === 'light' ? 'light' : this.state.theme);
     this.bindControls();
     this.observed = new WeakSet();
     this.setupReveal();
@@ -778,7 +790,10 @@ class Component extends DCLogic {
   componentDidUpdate(prevProps, prevState) {
     const ps = prevState || this._prev || {};
     if (ps.page !== this.state.page) this.setupReveal();
-    if (ps.theme !== this.state.theme) this.applyBodyBg(this.state.theme);
+    if (ps.theme !== this.state.theme) {
+      this.applyBodyBg(this.state.theme);
+      this.applyThemeVars(this.state.theme);
+    }
     this.bindControls();
     this._prev = { page: this.state.page, theme: this.state.theme };
   }
@@ -788,12 +803,27 @@ class Component extends DCLogic {
     if (this.onMove) window.removeEventListener('mousemove', this.onMove);
     if (this.onResize) window.removeEventListener('resize', this.onResize);
     if (this.onHashChange) window.removeEventListener('hashchange', this.onHashChange);
+    if (this.onControlClick) document.removeEventListener('click', this.onControlClick);
     if (this.io) this.io.disconnect();
   }
 
   applyBodyBg(theme) {
     document.body.style.background = THEMES[theme].bg;
     document.body.style.color = THEMES[theme].ink;
+  }
+
+  applyThemeVars(theme) {
+    requestAnimationFrame(() => {
+      const root = document.getElementById('theme-root');
+      if (!root) return;
+      const values = THEMES[theme];
+      const names = {
+        bg: '--bg', panel: '--panel', ink: '--ink', muted: '--muted', dim: '--dim',
+        soft: '--soft', accent: '--accent', accent2: '--accent2', onAccent: '--on-accent',
+        line: '--line', line2: '--line2', fill: '--fill', header: '--header'
+      };
+      Object.keys(names).forEach((key) => root.style.setProperty(names[key], values[key]));
+    });
   }
 
   toggle() {
@@ -812,16 +842,6 @@ class Component extends DCLogic {
 
   bindControls() {
     requestAnimationFrame(() => {
-      const language = document.getElementById('language-toggle');
-      if (language && !language.dataset.bound) {
-        language.dataset.bound = 'true';
-        language.addEventListener('click', () => this.toggleLang());
-      }
-      const theme = document.getElementById('theme-toggle');
-      if (theme && !theme.dataset.bound) {
-        theme.dataset.bound = 'true';
-        theme.addEventListener('click', () => this.toggle());
-      }
       const form = document.getElementById('contact-form');
       if (form && !form.dataset.bound) {
         form.dataset.bound = 'true';
