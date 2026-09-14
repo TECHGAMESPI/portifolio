@@ -17,7 +17,7 @@ export default function Navbar({darkMode, lang, toggleTheme, toggleLang, t}) {
         <div className={Style.tools}>
           <button onClick={toggleLang} aria-label="Change language">{lang === 'pt' ? 'EN' : 'PT'}</button>
           <button onClick={toggleTheme} aria-label="Alternar tema">{darkMode ? '☼' : '☾'}</button>
-          <a className={Style.contact} href={profile.whatsapp} target="_blank" rel="noreferrer">{t.nav.contact}<span>↗</span></a>
+          <a className={Style.contact} href={profile.contact} target="_blank" rel="noreferrer">{t.nav.contact}<span>↗</span></a>
         </div>
       </div>
     </nav>
