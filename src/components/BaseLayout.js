@@ -47,8 +47,6 @@ export default function BaseLayout() {
       <footer className={Style.footer}>
         <div><strong>José Cândido</strong><span>{t.footer}</span></div>
         <div className={Style.footerLinks}>
-          <a href={`mailto:${profile.email}`}>E-mail</a>
-          <a href={profile.whatsapp} target="_blank" rel="noreferrer">WhatsApp</a>
           <a href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
           <a href={profile.github} target="_blank" rel="noreferrer">GitHub</a>
         </div>
