@@ -24,6 +24,11 @@
   ::selection { background: rgba(46,230,168,0.25); }
   @keyframes pulseDot { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: .35; transform: scale(.8); } }
   @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  header nav button[data-active="true"] {
+    border-color: var(--line2, rgba(255,255,255,0.16)) !important;
+    background: var(--line, rgba(255,255,255,0.06)) !important;
+    color: var(--ink, #EDECE8) !important;
+  }
 </style>
 </helmet>
 
@@ -46,11 +51,11 @@
       </div>
       <nav style="display: flex; align-items: center; gap: 6px;">
         <sc-for list="{{ navItems }}" as="item" hint-placeholder-count="3">
-          <button type="button" onClick="{{ item.onClick }}" style="{{ item.style }}">{{ item.label }}</button>
+          <button type="button" onClick="{{ item.onClick }}" data-active="{{ item.active }}" style="padding: 9px 15px; border-radius: 999px; border: 1px solid transparent; background: transparent; color: var(--muted, #9A9C9E); font-size: 14px; font-weight: 500; cursor: pointer;">{{ item.label }}</button>
         </sc-for>
         <button type="button" onClick="{{ toggleLang }}" aria-label="Language" style="margin-left: 6px; height: 34px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--line2, rgba(255,255,255,0.12)); background: transparent; color: var(--muted, #9A9C9E); font-family: 'JetBrains Mono', monospace; font-size: 11.5px; letter-spacing: 0.06em; cursor: pointer;" style-hover="color: var(--ink, #EDECE8);">{{ langLabel }}</button>
         <button type="button" onClick="{{ toggleTheme }}" aria-label="Alternar tema" style="margin-left: 6px; width: 34px; height: 34px; border-radius: 999px; border: 1px solid var(--line2, rgba(255,255,255,0.12)); background: transparent; color: var(--muted, #9A9C9E); font-size: 13px; cursor: pointer; display: grid; place-items: center;" style-hover="color: var(--ink, #EDECE8);">{{ themeIcon }}</button>
-        <a href="https://www.linkedin.com/in/josecandido1/" target="_blank" rel="noopener" style="margin-left: 10px; padding: 9px 17px; border-radius: 999px; background: var(--accent, #2EE6A8); color: var(--on-accent, #06140F); font-weight: 600; font-size: 13.5px;" style-hover="background: var(--accent2, #7DF3C9);">{{ t.wa }}</a>
+        <a href="https://wa.me/5586999474583" target="_blank" rel="noopener" style="margin-left: 10px; padding: 9px 17px; border-radius: 999px; background: var(--accent, #2EE6A8); color: var(--on-accent, #06140F); font-weight: 600; font-size: 13.5px;" style-hover="background: var(--accent2, #7DF3C9);">{{ t.wa }}</a>
       </nav>
     </div>
   </header>
@@ -73,8 +78,8 @@
         </p>
         <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px;">
           <button type="button" onClick="{{ goProjetos }}" style="padding: 14px 26px; border-radius: 999px; border: none; background: var(--ink, #EDECE8); color: var(--bg, #0A0B0C); font-weight: 600; font-size: 15px; cursor: pointer;" style-hover="background: #FFFFFF;">{{ t.btnProjects }}</button>
-          <a href="https://www.linkedin.com/in/josecandido1/" target="_blank" rel="noopener" style="padding: 14px 26px; border-radius: 999px; border: 1px solid var(--line2, rgba(255,255,255,0.18)); background: transparent; color: var(--ink, #EDECE8); font-weight: 600; font-size: 15px;" style-hover="border-color: rgba(46,230,168,0.6); color: var(--accent, #2EE6A8);">{{ t.btnWa }}</a>
-          <a href="https://www.linkedin.com/in/josecandido1/" style="padding: 14px 26px; border-radius: 999px; border: 1px solid var(--line2, rgba(255,255,255,0.18)); background: transparent; color: var(--muted, #9A9C9E); font-weight: 600; font-size: 15px;" style-hover="border-color: var(--line2, rgba(255,255,255,0.4)); color: var(--ink, #EDECE8);">CV sob solicitação</a>
+          <a href="https://wa.me/5586999474583" target="_blank" rel="noopener" style="padding: 14px 26px; border-radius: 999px; border: 1px solid var(--line2, rgba(255,255,255,0.18)); background: transparent; color: var(--ink, #EDECE8); font-weight: 600; font-size: 15px;" style-hover="border-color: rgba(46,230,168,0.6); color: var(--accent, #2EE6A8);">{{ t.btnWa }}</a>
+          <a href="mailto:candido@techgamespi.com?subject=Currículo" style="padding: 14px 26px; border-radius: 999px; border: 1px solid var(--line2, rgba(255,255,255,0.18)); background: transparent; color: var(--muted, #9A9C9E); font-weight: 600; font-size: 15px;" style-hover="border-color: var(--line2, rgba(255,255,255,0.4)); color: var(--ink, #EDECE8);">CV sob solicitação</a>
         </div>
         <div style="display: flex; align-items: center; gap: 18px; margin-top: 36px;">
           <img src="https://raw.githubusercontent.com/TECHGAMESPI/portifolio/main/src/img/self.png" alt="José Cândido" style="width: 46px; height: 46px; border-radius: 50%; object-fit: cover; border: 1px solid var(--line2, rgba(255,255,255,0.14));" />
@@ -190,7 +195,7 @@
           <p style="color: var(--soft, #B4B6B8); font-size: 16px; margin: 14px 0 0;">{{ t.ctaText }}</p>
         </div>
         <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-          <a href="https://www.linkedin.com/in/josecandido1/" target="_blank" rel="noopener" style="padding: 15px 30px; border-radius: 999px; background: var(--accent, #2EE6A8); color: var(--on-accent, #06140F); font-weight: 600; font-size: 15px; white-space: nowrap;" style-hover="background: var(--accent2, #7DF3C9);">{{ t.ctaWa }}</a>
+          <a href="https://wa.me/5586999474583" target="_blank" rel="noopener" style="padding: 15px 30px; border-radius: 999px; background: var(--accent, #2EE6A8); color: var(--on-accent, #06140F); font-weight: 600; font-size: 15px; white-space: nowrap;" style-hover="background: var(--accent2, #7DF3C9);">{{ t.ctaWa }}</a>
           <button type="button" onClick="{{ goContato }}" style="padding: 15px 30px; border-radius: 999px; border: 1px solid var(--line2, rgba(255,255,255,0.2)); background: transparent; color: var(--ink, #EDECE8); font-weight: 600; font-size: 15px; cursor: pointer; white-space: nowrap;" style-hover="border-color: var(--line2, rgba(255,255,255,0.45));">{{ t.ctaForm }}</button>
         </div>
       </div>
@@ -210,8 +215,8 @@
         <p style="font-size: 18px; line-height: 1.7; color: var(--muted, #9A9C9E); margin: 22px 0 0; text-wrap: pretty;">Perfil autodidata, com aprendizado rápido e foco em melhoria contínua. Aberto a oportunidades que envolvam desenvolvimento de software, backend e arquitetura de sistemas.</p>
       </div>
       <div style="display: flex; flex-direction: column; gap: 16px;">
-        <img src="https://raw.githubusercontent.com/TECHGAMESPI/portifolio/main/src/img/self.png" alt="José Cândido" style="width: 100%; border-radius: 18px; object-fit: cover; aspect-ratio: 4 / 5; border: 1px solid var(--line2, rgba(255,255,255,0.1));" />
-        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); line-height: 1.6;">TERESINA, PI · BRASIL<br />José Cândido · LinkedIn</div>
+        <img src="src/img/self.png" alt="José Cândido" style="width: 100%; border-radius: 18px; object-fit: cover; aspect-ratio: 4 / 5; border: 1px solid var(--line2, rgba(255,255,255,0.1));" />
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); line-height: 1.6;">TERESINA, PI · BRASIL<br />candido@techgamespi.com</div>
       </div>
     </div>
 
@@ -311,8 +316,8 @@
           <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(26px, 3.2vw, 38px); letter-spacing: -0.03em; font-weight: 600; margin: 14px 0 0; line-height: 1.1;">Vamos conversar.</h2>
           <p style="color: var(--muted, #9A9C9E); font-size: 15.5px; line-height: 1.65; margin: 16px 0 0;">Preencha o formulário ou fale direto pelos canais abaixo. Respondo em até 24 horas.</p>
           <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 28px; font-size: 14.5px;">
-            <a href="https://www.linkedin.com/in/josecandido1/">José Cândido · LinkedIn</a>
-            <a href="https://www.linkedin.com/in/josecandido1/">LinkedIn</a>
+            <a href="mailto:candido@techgamespi.com">candido@techgamespi.com</a>
+            <a href="https://wa.me/5586999474583">WhatsApp · (86) 99947-4583</a>
             <a href="https://www.linkedin.com/in/josecandido1/">linkedin.com/in/josecandido1</a>
           </div>
         </div>
@@ -407,7 +412,7 @@
           </div>
         </sc-for>
       </div>
-      <a href="https://www.linkedin.com/in/josecandido1/" target="_blank" rel="noopener" style="display: inline-block; margin-top: 32px; padding: 15px 30px; border-radius: 999px; background: var(--accent, #2EE6A8); color: var(--on-accent, #06140F); font-weight: 600; font-size: 15px;" style-hover="background: var(--accent2, #7DF3C9);">Solicitar orçamento</a>
+      <a href="https://wa.me/5586999474583" target="_blank" rel="noopener" style="display: inline-block; margin-top: 32px; padding: 15px 30px; border-radius: 999px; background: var(--accent, #2EE6A8); color: var(--on-accent, #06140F); font-weight: 600; font-size: 15px;" style-hover="background: var(--accent2, #7DF3C9);">Solicitar orçamento no WhatsApp</a>
     </section>
   </main>
   </sc-if>
@@ -417,11 +422,11 @@
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 28px;">
         <div style="display: flex; flex-direction: column; gap: 7px;">
           <span style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--dim, #83868A); letter-spacing: 0.08em;">E-MAIL</span>
-          <a href="https://www.linkedin.com/in/josecandido1/" style="font-size: 15px;">José Cândido · LinkedIn</a>
+          <a href="mailto:candido@techgamespi.com" style="font-size: 15px;">candido@techgamespi.com</a>
         </div>
         <div style="display: flex; flex-direction: column; gap: 7px;">
           <span style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--dim, #83868A); letter-spacing: 0.08em;">WHATSAPP</span>
-          <a href="https://www.linkedin.com/in/josecandido1/" target="_blank" rel="noopener" style="font-size: 15px;">LinkedIn</a>
+          <a href="https://wa.me/5586999474583" target="_blank" rel="noopener" style="font-size: 15px;">(86) 99947-4583</a>
         </div>
         <div style="display: flex; flex-direction: column; gap: 7px;">
           <span style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--dim, #83868A); letter-spacing: 0.08em;">LINKEDIN</span>
@@ -457,11 +462,11 @@ const COPY = {
   pt: {
     kicker: 'SOFTWARE · INFRA · SEGURANÇA',
     nav: ['Início', 'Sobre', 'Empresas', 'Projetos'],
-    wa: 'Contato',
+    wa: 'WhatsApp',
     badge: 'DISPONÍVEL PARA PROJETOS E VAGAS',
     h1a: 'Engenheiro de Software', h1b: 'Full Stack & CTO',
     heroText: 'Atuação prática contínua desde 2021 no desenvolvimento de soluções web e backend, unindo visão técnica, arquitetura de sistemas e alinhamento com objetivos de negócio. Hoje como CTO da ChatExpress.',
-    btnProjects: 'Ver projetos', btnWa: 'Falar comigo', btnCv: 'CV sob solicitação',
+    btnProjects: 'Ver projetos', btnWa: 'Falar no WhatsApp', btnCv: 'CV sob solicitação',
     cardTitle: 'EM UMA LINHA',
     rows: [
       { k: 'Formação', v: 'Eng. de Software · iCEV' },
@@ -496,7 +501,7 @@ const COPY = {
     projTitle: 'Projetos selecionados', projAll: 'Ver todos →',
     ctaTitle: 'Tem um projeto ou uma vaga?',
     ctaText: 'Me conte o contexto e eu respondo com uma proposta de caminho.',
-    ctaWa: 'Falar comigo', ctaForm: 'Abrir formulário',
+    ctaWa: 'Chamar no WhatsApp', ctaForm: 'Abrir formulário',
     aboutKicker: 'SOBRE MIM',
     aboutTitle: 'Construo soluções pensando além do código.',
     aboutP1: 'Sou Engenheiro de Software, com atuação prática contínua desde 2021 no desenvolvimento de soluções web e backend, unindo visão técnica, arquitetura de sistemas e alinhamento com objetivos de negócio.',
@@ -559,7 +564,7 @@ const COPY = {
     fName: 'Seu nome', fEmail: 'Seu e-mail', fSubject: 'Assunto (vaga, orçamento, parceria...)',
     fMsg: 'Conte um pouco sobre o projeto ou a oportunidade', fSend: 'Enviar mensagem',
     hintSent: 'Abrindo seu cliente de e-mail com a mensagem preenchida.',
-    hintIdle: 'O contato abre meu perfil profissional. Para receber direto no site, dá para plugar Formspree ou uma rota no back-end.',
+    hintIdle: 'O envio abre seu app de e-mail. Para receber direto no site, dá para plugar Formspree ou uma rota no back-end.',
     empTitle: 'Software que organiza e serviço que resolve.',
     ceLead: 'A nova forma de atendimento omnichannel para atender seus clientes em um só lugar.',
     probKicker: 'O PROBLEMA', probLead: 'Mais de 90% das empresas sofrem com os mesmos pontos:',
@@ -582,9 +587,9 @@ const COPY = {
       { name: 'Essencial', price: 'R$ 192,90', note: '3 agentes · 1 caixa de entrada',
         items: ['WhatsApp (1 número integrado)', 'Criar times', 'Identificação do atendente', 'Atalhos e marcadores', 'Gerador de protocolo', 'Robô para autoatendimento', 'NPS e relatórios', 'Suporte via plataforma'] },
       { name: 'Intermediário', price: 'R$ 431,90', note: '8 agentes · 3 caixas de entrada',
-        items: ['Tudo do Essencial', 'WhatsApp, Telegram, Line', 'Website LiveChat', 'E-mail e SMS', 'Facebook/Instagram (em breve)', 'Suporte prioritário via Contact'] },
+        items: ['Tudo do Essencial', 'WhatsApp, Telegram, Line', 'Website LiveChat', 'E-mail e SMS', 'Facebook/Instagram (em breve)', 'Suporte prioritário via WhatsApp'] },
       { name: 'Empresarial', price: 'R$ 1079,90', note: '20 agentes · 6 caixas de entrada',
-        items: ['Tudo do Intermediário', 'Integrações: Google Translate', 'Chat OpenAI', 'DialogFlow', 'Suporte prioritário via Contact'] },
+        items: ['Tudo do Intermediário', 'Integrações: Google Translate', 'Chat OpenAI', 'DialogFlow', 'Suporte prioritário via WhatsApp'] },
       { name: 'Personalizado', price: 'Sob consulta', note: 'Agentes e caixas personalizáveis',
         items: ['Tudo do Empresarial', 'Suporte em videochamada', 'Consultoria para criação de automações'] }
     ],
@@ -596,17 +601,17 @@ const COPY = {
       { title: 'Videogames', text: 'Manutenção de consoles: limpeza, troca de térmica, reparo de drives e controles.' },
       { title: 'Redes e suporte', text: 'Instalação de redes, servidores, backup e suporte técnico para empresas.' }
     ],
-    tgCta: 'Solicitar orçamento',
+    tgCta: 'Solicitar orçamento no WhatsApp',
     footKicker: 'SOFTWARE · INFRAESTRUTURA · SEGURANÇA'
   },
   en: {
     kicker: 'SOFTWARE · INFRA · SECURITY',
     nav: ['Home', 'About', 'Companies', 'Projects'],
-    wa: 'Contato',
+    wa: 'WhatsApp',
     badge: 'AVAILABLE FOR PROJECTS AND ROLES',
     h1a: 'Software Engineer', h1b: 'Full Stack & CTO',
     heroText: 'Working continuously since 2021 on web and backend solutions, combining technical vision, systems architecture and alignment with business goals. Currently CTO at ChatExpress.',
-    btnProjects: 'See projects', btnWa: 'Contact me', btnCv: 'CV on request',
+    btnProjects: 'See projects', btnWa: 'Message on WhatsApp', btnCv: 'CV on request',
     cardTitle: 'AT A GLANCE',
     rows: [
       { k: 'Degree', v: 'Software Eng. · iCEV' },
@@ -641,7 +646,7 @@ const COPY = {
     projTitle: 'Selected projects', projAll: 'See all →',
     ctaTitle: 'Have a project or a role?',
     ctaText: 'Tell me the context and I will reply with a proposed path.',
-    ctaWa: 'Contact me', ctaForm: 'Open the form',
+    ctaWa: 'Message on WhatsApp', ctaForm: 'Open the form',
     aboutKicker: 'ABOUT ME',
     aboutTitle: 'I build solutions that look beyond the code.',
     aboutP1: 'I am a Software Engineer working continuously since 2021 on web and backend solutions, combining technical vision, systems architecture and alignment with business goals.',
@@ -703,8 +708,8 @@ const COPY = {
     contactText: 'Fill in the form or reach me directly through the channels below. I reply within 24 hours.',
     fName: 'Your name', fEmail: 'Your email', fSubject: 'Subject (role, quote, partnership...)',
     fMsg: 'Tell me a bit about the project or the opportunity', fSend: 'Send message',
-    hintSent: 'Opening my professional profile.',
-    hintIdle: 'Contact opens my professional profile. To receive messages on the site, Formspree or a backend route can be plugged in.',
+    hintSent: 'Opening your email client with the message filled in.',
+    hintIdle: 'Submitting opens your email app. To receive messages on the site, Formspree or a backend route can be plugged in.',
     empTitle: 'Software that organises and service that fixes.',
     ceLead: 'A new way to run omnichannel support and serve your customers in one place.',
     probKicker: 'THE PROBLEM', probLead: 'More than 90% of companies struggle with the same things:',
@@ -727,9 +732,9 @@ const COPY = {
       { name: 'Essential', price: 'R$ 192.90', note: '3 agents · 1 inbox',
         items: ['WhatsApp (1 connected number)', 'Create teams', 'Agent identification', 'Shortcuts and labels', 'Ticket protocol generator', 'Self-service bot', 'NPS and reports', 'Support via platform'] },
       { name: 'Intermediate', price: 'R$ 431.90', note: '8 agents · 3 inboxes',
-        items: ['Everything in Essential', 'WhatsApp, Telegram, Line', 'Website LiveChat', 'Email and SMS', 'Facebook/Instagram (soon)', 'Priority support via Contact'] },
+        items: ['Everything in Essential', 'WhatsApp, Telegram, Line', 'Website LiveChat', 'Email and SMS', 'Facebook/Instagram (soon)', 'Priority support via WhatsApp'] },
       { name: 'Business', price: 'R$ 1,079.90', note: '20 agents · 6 inboxes',
-        items: ['Everything in Intermediate', 'Integrations: Google Translate', 'OpenAI chat', 'DialogFlow', 'Priority support via Contact'] },
+        items: ['Everything in Intermediate', 'Integrations: Google Translate', 'OpenAI chat', 'DialogFlow', 'Priority support via WhatsApp'] },
       { name: 'Custom', price: 'On request', note: 'Custom agents and inboxes',
         items: ['Everything in Business', 'Video call support', 'Consulting to build automations'] }
     ],
@@ -741,7 +746,7 @@ const COPY = {
       { title: 'Consoles', text: 'Console maintenance: cleaning, thermal paste, drive and controller repair.' },
       { title: 'Networks and support', text: 'Network and server setup, backups and technical support for businesses.' }
     ],
-    tgCta: 'Request a quote on Contato',
+    tgCta: 'Request a quote on WhatsApp',
     footKicker: 'SOFTWARE · INFRASTRUCTURE · SECURITY'
   }
 };
@@ -932,10 +937,10 @@ class Component extends DCLogic {
       isProjetos: page === 'projetos',
       isEmpresas: page === 'empresas',
       navItems: [
-        { label: t.nav[0], style: this.navStyle(page === 'home'), onClick: () => this.go('home') },
-        { label: t.nav[1], style: this.navStyle(page === 'sobre'), onClick: () => this.go('sobre') },
-        { label: t.nav[2], style: this.navStyle(page === 'empresas'), onClick: () => this.go('empresas') },
-        { label: t.nav[3], style: this.navStyle(page === 'projetos'), onClick: () => this.go('projetos') }
+        { label: t.nav[0], active: page === 'home', onClick: () => this.go('home') },
+        { label: t.nav[1], active: page === 'sobre', onClick: () => this.go('sobre') },
+        { label: t.nav[2], active: page === 'empresas', onClick: () => this.go('empresas') },
+        { label: t.nav[3], active: page === 'projetos', onClick: () => this.go('projetos') }
       ],
       goEmpresas: () => this.go('empresas'),
       problemas: t.problemas,
@@ -964,7 +969,7 @@ class Component extends DCLogic {
         const f = e.target;
         const nome = f.nome.value, email = f.email.value, assunto = f.assunto.value || (this.state.lang === 'pt' ? 'Contato pelo site' : 'Contact from the site'), msg = f.mensagem.value;
         const body = (this.state.lang === 'pt' ? 'Nome: ' : 'Name: ') + nome + '\nE-mail: ' + email + '\n\n' + msg;
-        window.location.href = 'https://www.linkedin.com/in/josecandido1/';
+        window.location.href = 'mailto:candido@techgamespi.com?subject=' + encodeURIComponent(assunto) + '&body=' + encodeURIComponent(body);
         this.setState({ sent: true });
       }
     };
