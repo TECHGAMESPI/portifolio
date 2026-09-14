@@ -24,7 +24,7 @@
   ::selection { background: rgba(46,230,168,0.25); }
   @keyframes pulseDot { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: .35; transform: scale(.8); } }
   @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
-  header nav button[data-active="true"] {
+  header nav a[data-active="true"] {
     border-color: var(--line2, rgba(255,255,255,0.16)) !important;
     background: var(--line, rgba(255,255,255,0.06)) !important;
     color: var(--ink, #EDECE8) !important;
@@ -42,19 +42,20 @@
 
   <header style="position: sticky; top: 0; z-index: 20; backdrop-filter: blur(14px); background: var(--header, rgba(10,11,12,0.72)); border-bottom: 1px solid var(--line, rgba(255,255,255,0.07));">
     <div style="max-width: 1120px; margin: 0 auto; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; gap: 24px;">
-      <div style="display: flex; align-items: center; gap: 11px; cursor: pointer;" onClick="{{ goHome }}">
+      <a href="#home" style="display: flex; align-items: center; gap: 11px; cursor: pointer; color: var(--ink, #EDECE8);">
         <span style="width: 7px; height: 7px; border-radius: 50%; background: var(--accent, #2EE6A8); flex: none;"></span>
         <div style="display: flex; flex-direction: column; line-height: 1.2;">
           <strong style="font-family: 'Space Grotesk', sans-serif; font-size: 16px; letter-spacing: -0.015em; font-weight: 600;">José Cândido</strong>
           <small style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--dim, #83868A); letter-spacing: 0.1em;">{{ t.kicker }}</small>
         </div>
-      </div>
+      </a>
       <nav style="display: flex; align-items: center; gap: 6px;">
-        <sc-for list="{{ navItems }}" as="item" hint-placeholder-count="3">
-          <button type="button" onClick="{{ item.onClick }}" data-active="{{ item.active }}" style="padding: 9px 15px; border-radius: 999px; border: 1px solid transparent; background: transparent; color: var(--muted, #9A9C9E); font-size: 14px; font-weight: 500; cursor: pointer;">{{ item.label }}</button>
-        </sc-for>
-        <button type="button" onClick="{{ toggleLang }}" aria-label="Language" style="margin-left: 6px; height: 34px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--line2, rgba(255,255,255,0.12)); background: transparent; color: var(--muted, #9A9C9E); font-family: 'JetBrains Mono', monospace; font-size: 11.5px; letter-spacing: 0.06em; cursor: pointer;" style-hover="color: var(--ink, #EDECE8);">{{ langLabel }}</button>
-        <button type="button" onClick="{{ toggleTheme }}" aria-label="Alternar tema" style="margin-left: 6px; width: 34px; height: 34px; border-radius: 999px; border: 1px solid var(--line2, rgba(255,255,255,0.12)); background: transparent; color: var(--muted, #9A9C9E); font-size: 13px; cursor: pointer; display: grid; place-items: center;" style-hover="color: var(--ink, #EDECE8);">{{ themeIcon }}</button>
+        <a href="#home" data-active="{{ isHome }}" style="padding: 9px 15px; border-radius: 999px; border: 1px solid transparent; background: transparent; color: var(--muted, #9A9C9E); font-size: 14px; font-weight: 500;">{{ navHome }}</a>
+        <a href="#sobre" data-active="{{ isSobre }}" style="padding: 9px 15px; border-radius: 999px; border: 1px solid transparent; background: transparent; color: var(--muted, #9A9C9E); font-size: 14px; font-weight: 500;">{{ navAbout }}</a>
+        <a href="#empresas" data-active="{{ isEmpresas }}" style="padding: 9px 15px; border-radius: 999px; border: 1px solid transparent; background: transparent; color: var(--muted, #9A9C9E); font-size: 14px; font-weight: 500;">{{ navCompanies }}</a>
+        <a href="#projetos" data-active="{{ isProjetos }}" style="padding: 9px 15px; border-radius: 999px; border: 1px solid transparent; background: transparent; color: var(--muted, #9A9C9E); font-size: 14px; font-weight: 500;">{{ navProjects }}</a>
+        <button id="language-toggle" type="button" aria-label="Language" style="margin-left: 6px; height: 34px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--line2, rgba(255,255,255,0.12)); background: transparent; color: var(--muted, #9A9C9E); font-family: 'JetBrains Mono', monospace; font-size: 11.5px; letter-spacing: 0.06em; cursor: pointer;">{{ langLabel }}</button>
+        <button id="theme-toggle" type="button" aria-label="Alternar tema" style="margin-left: 6px; width: 34px; height: 34px; border-radius: 999px; border: 1px solid var(--line2, rgba(255,255,255,0.12)); background: transparent; color: var(--muted, #9A9C9E); font-size: 13px; cursor: pointer; display: grid; place-items: center;">{{ themeIcon }}</button>
         <a href="https://wa.me/5586999474583" target="_blank" rel="noopener" style="margin-left: 10px; padding: 9px 17px; border-radius: 999px; background: var(--accent, #2EE6A8); color: var(--on-accent, #06140F); font-weight: 600; font-size: 13.5px;" style-hover="background: var(--accent2, #7DF3C9);">{{ t.wa }}</a>
       </nav>
     </div>
@@ -77,7 +78,7 @@
           {{ t.heroText }}
         </p>
         <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px;">
-          <button type="button" onClick="{{ goProjetos }}" style="padding: 14px 26px; border-radius: 999px; border: none; background: var(--ink, #EDECE8); color: var(--bg, #0A0B0C); font-weight: 600; font-size: 15px; cursor: pointer;" style-hover="background: #FFFFFF;">{{ t.btnProjects }}</button>
+          <a href="#projetos" style="padding: 14px 26px; border-radius: 999px; border: none; background: var(--ink, #EDECE8); color: var(--bg, #0A0B0C); font-weight: 600; font-size: 15px;">{{ t.btnProjects }}</a>
           <a href="https://wa.me/5586999474583" target="_blank" rel="noopener" style="padding: 14px 26px; border-radius: 999px; border: 1px solid var(--line2, rgba(255,255,255,0.18)); background: transparent; color: var(--ink, #EDECE8); font-weight: 600; font-size: 15px;" style-hover="border-color: rgba(46,230,168,0.6); color: var(--accent, #2EE6A8);">{{ t.btnWa }}</a>
           <a href="mailto:candido@techgamespi.com?subject=Currículo" style="padding: 14px 26px; border-radius: 999px; border: 1px solid var(--line2, rgba(255,255,255,0.18)); background: transparent; color: var(--muted, #9A9C9E); font-weight: 600; font-size: 15px;" style-hover="border-color: var(--line2, rgba(255,255,255,0.4)); color: var(--ink, #EDECE8);">CV sob solicitação</a>
         </div>
@@ -139,7 +140,7 @@
       <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); letter-spacing: 0.08em;">{{ t.compKicker }}</div>
       <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin: 14px 0 36px;">
         <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(28px, 3.6vw, 42px); letter-spacing: -0.03em; font-weight: 600; margin: 0; line-height: 1.08; max-width: 22ch;">{{ t.compTitle }}</h2>
-        <button type="button" onClick="{{ goEmpresas }}" style="background: none; border: none; color: var(--accent, #2EE6A8); font-size: 14.5px; font-weight: 600; cursor: pointer; padding: 0;">{{ t.compLink }}</button>
+        <a href="#empresas" style="color: var(--accent, #2EE6A8); font-size: 14.5px; font-weight: 600;">{{ t.compLink }}</a>
       </div>
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px;">
         <div style="padding: 34px 30px; border: 1px solid var(--line, rgba(255,255,255,0.08)); border-radius: 20px; background: var(--panel, #0C0D0F); display: flex; flex-direction: column; gap: 14px;">
@@ -173,7 +174,7 @@
     <section style="padding: 96px 0 0;">
       <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-bottom: 32px;">
         <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(28px, 3.6vw, 42px); letter-spacing: -0.03em; font-weight: 600; margin: 0; line-height: 1.08;">{{ t.projTitle }}</h2>
-        <button type="button" onClick="{{ goProjetos }}" style="background: none; border: none; color: var(--accent, #2EE6A8); font-size: 14.5px; font-weight: 600; cursor: pointer; padding: 0;">{{ t.projAll }}</button>
+        <a href="#projetos" style="color: var(--accent, #2EE6A8); font-size: 14.5px; font-weight: 600;">{{ t.projAll }}</a>
       </div>
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
         <sc-for list="{{ featured }}" as="p" hint-placeholder-count="2">
@@ -196,7 +197,7 @@
         </div>
         <div style="display: flex; gap: 12px; flex-wrap: wrap;">
           <a href="https://wa.me/5586999474583" target="_blank" rel="noopener" style="padding: 15px 30px; border-radius: 999px; background: var(--accent, #2EE6A8); color: var(--on-accent, #06140F); font-weight: 600; font-size: 15px; white-space: nowrap;" style-hover="background: var(--accent2, #7DF3C9);">{{ t.ctaWa }}</a>
-          <button type="button" onClick="{{ goContato }}" style="padding: 15px 30px; border-radius: 999px; border: 1px solid var(--line2, rgba(255,255,255,0.2)); background: transparent; color: var(--ink, #EDECE8); font-weight: 600; font-size: 15px; cursor: pointer; white-space: nowrap;" style-hover="border-color: var(--line2, rgba(255,255,255,0.45));">{{ t.ctaForm }}</button>
+          <a href="#contato" style="padding: 15px 30px; border-radius: 999px; border: 1px solid var(--line2, rgba(255,255,255,0.2)); background: transparent; color: var(--ink, #EDECE8); font-weight: 600; font-size: 15px; white-space: nowrap;">{{ t.ctaForm }}</a>
         </div>
       </div>
     </section>
@@ -322,7 +323,7 @@
           </div>
         </div>
 
-        <form onSubmit="{{ onSubmit }}" style="display: grid; gap: 14px;">
+        <form id="contact-form" style="display: grid; gap: 14px;">
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px;">
             <input type="text" name="nome" placeholder="Seu nome" required="true" style="padding: 14px 16px; border-radius: 12px; border: 1px solid var(--line2, rgba(255,255,255,0.12)); background: var(--fill, rgba(255,255,255,0.03)); color: var(--ink, #EDECE8); font-size: 15px; outline: none;" style-focus="border-color: rgba(46,230,168,0.6);" />
             <input type="email" name="email" placeholder="Seu e-mail" required="true" style="padding: 14px 16px; border-radius: 12px; border: 1px solid var(--line2, rgba(255,255,255,0.12)); background: var(--fill, rgba(255,255,255,0.03)); color: var(--ink, #EDECE8); font-size: 15px; outline: none;" style-focus="border-color: rgba(46,230,168,0.6);" />
@@ -763,6 +764,19 @@ class Component extends DCLogic {
     if (lang === 'pt' || lang === 'en') this.setState({ lang: lang });
     this.applyBodyBg(saved === 'light' ? 'light' : this.state.theme);
     this.startBackground();
+    this.onHashChange = () => {
+      const requested = window.location.hash.replace('#', '') || 'home';
+      const allowed = ['home', 'sobre', 'empresas', 'projetos'];
+      const page = requested === 'contato' ? 'projetos' : (allowed.includes(requested) ? requested : 'home');
+      if (page !== this.state.page) this.setState({ page });
+      if (requested === 'contato') requestAnimationFrame(() => {
+        const el = document.getElementById('contato');
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    };
+    window.addEventListener('hashchange', this.onHashChange);
+    this.onHashChange();
+    this.bindControls();
     this.observed = new WeakSet();
     this.setupReveal();
     this._prev = { page: this.state.page, theme: this.state.theme };
@@ -772,6 +786,7 @@ class Component extends DCLogic {
     const ps = prevState || this._prev || {};
     if (ps.page !== this.state.page) this.setupReveal();
     if (ps.theme !== this.state.theme) this.applyBodyBg(this.state.theme);
+    this.bindControls();
     this._prev = { page: this.state.page, theme: this.state.theme };
   }
 
@@ -779,6 +794,7 @@ class Component extends DCLogic {
     cancelAnimationFrame(this.raf);
     if (this.onMove) window.removeEventListener('mousemove', this.onMove);
     if (this.onResize) window.removeEventListener('resize', this.onResize);
+    if (this.onHashChange) window.removeEventListener('hashchange', this.onHashChange);
     if (this.io) this.io.disconnect();
   }
 
@@ -798,6 +814,34 @@ class Component extends DCLogic {
     const next = this.state.lang === 'pt' ? 'en' : 'pt';
     try { localStorage.setItem('jc-lang', next); } catch (e) {}
     this.setState({ lang: next });
+  }
+
+  bindControls() {
+    requestAnimationFrame(() => {
+      const language = document.getElementById('language-toggle');
+      if (language && !language.dataset.bound) {
+        language.dataset.bound = 'true';
+        language.addEventListener('click', () => this.toggleLang());
+      }
+      const theme = document.getElementById('theme-toggle');
+      if (theme && !theme.dataset.bound) {
+        theme.dataset.bound = 'true';
+        theme.addEventListener('click', () => this.toggle());
+      }
+      const form = document.getElementById('contact-form');
+      if (form && !form.dataset.bound) {
+        form.dataset.bound = 'true';
+        form.addEventListener('submit', (event) => {
+          event.preventDefault();
+          const name = form.nome.value;
+          const email = form.email.value;
+          const subject = form.assunto.value || 'Contato pelo site';
+          const message = form.mensagem.value;
+          const body = 'Nome: ' + name + '\nE-mail: ' + email + '\n\n' + message;
+          window.location.href = 'mailto:candido@techgamespi.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+        });
+      }
+    });
   }
 
   setupReveal() {
@@ -936,6 +980,10 @@ class Component extends DCLogic {
       isSobre: page === 'sobre',
       isProjetos: page === 'projetos',
       isEmpresas: page === 'empresas',
+      navHome: t.nav[0],
+      navAbout: t.nav[1],
+      navCompanies: t.nav[2],
+      navProjects: t.nav[3],
       navItems: [
         { label: t.nav[0], active: page === 'home', onClick: () => this.go('home') },
         { label: t.nav[1], active: page === 'sobre', onClick: () => this.go('sobre') },
