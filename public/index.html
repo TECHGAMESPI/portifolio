@@ -750,9 +750,11 @@ class Component extends DCLogic {
     let saved = null;
     try { saved = localStorage.getItem('jc-theme'); } catch (e) {}
     if (saved === 'light' || saved === 'dark') this.setState({ theme: saved });
-    let lang = null;
+    let lang = 'pt';
     try { lang = localStorage.getItem('jc-lang'); } catch (e) {}
-    if (lang === 'pt' || lang === 'en') this.setState({ lang: lang });
+    if (lang !== 'en') lang = 'pt';
+    this.setState({ lang: lang });
+    document.documentElement.lang = lang === 'en' ? 'en' : 'pt-BR';
     this.applyBodyBg(saved === 'light' ? 'light' : this.state.theme);
     this.startBackground();
     this.onHashChange = () => {
@@ -804,6 +806,7 @@ class Component extends DCLogic {
   toggleLang() {
     const next = this.state.lang === 'pt' ? 'en' : 'pt';
     try { localStorage.setItem('jc-lang', next); } catch (e) {}
+    document.documentElement.lang = next === 'en' ? 'en' : 'pt-BR';
     this.setState({ lang: next });
   }
 
