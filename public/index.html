@@ -28,6 +28,60 @@
     background: var(--line, rgba(255,255,255,0.06)) !important;
     color: var(--ink, #EDECE8) !important;
   }
+  @media (max-width: 720px) {
+    .site-header-inner {
+      padding: 12px 16px !important;
+      flex-wrap: wrap;
+      gap: 12px !important;
+    }
+    .site-nav {
+      width: 100%;
+      display: grid !important;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 6px !important;
+    }
+    .site-nav > a:not(:last-child) {
+      padding: 8px 3px !important;
+      font-size: 12px !important;
+      text-align: center;
+    }
+    #language-toggle { grid-column: 1; margin-left: 0 !important; width: 100%; }
+    #theme-toggle { grid-column: 2; margin-left: 0 !important; width: 100% !important; }
+    .site-nav > a:last-child {
+      grid-column: 3 / 5;
+      margin-left: 0 !important;
+      padding: 9px 12px !important;
+      text-align: center;
+    }
+    .page-shell { padding: 48px 16px 64px !important; }
+    .home-shell { padding-top: 0 !important; }
+    .home-hero {
+      padding: 52px 0 48px !important;
+      gap: 34px !important;
+    }
+    .home-hero h1 { font-size: clamp(42px, 14vw, 62px) !important; }
+    .hero-actions a { width: 100%; justify-content: center; text-align: center; }
+    .hero-socials { align-items: flex-start !important; }
+    .hero-socials > div:last-child { flex-wrap: wrap; gap: 12px 18px !important; }
+    .about-intro { gap: 32px !important; margin-top: 36px !important; }
+    .timeline-item { grid-template-columns: 1fr !important; gap: 10px !important; padding: 22px 0 !important; }
+    .project-heading { gap: 20px !important; }
+    .project-item { grid-template-columns: 1fr !important; gap: 12px !important; padding: 30px 0 !important; }
+    .project-item > div:first-child { padding-top: 0 !important; }
+    .contact-panel { margin-top: 64px !important; padding: 30px 20px !important; border-radius: 18px !important; }
+    .contact-grid { gap: 34px !important; }
+    .company-section { margin-top: 56px !important; padding-top: 30px !important; }
+    .plans-grid { grid-template-columns: 1fr !important; }
+    .site-footer-inner { padding: 42px 16px 26px !important; }
+  }
+  @media (max-width: 420px) {
+    .site-header-inner > a { width: 100%; }
+    .page-shell { padding-top: 38px !important; }
+    .home-shell { padding-top: 0 !important; }
+    .home-hero h1 { font-size: clamp(38px, 13vw, 54px) !important; }
+    .home-hero p { font-size: 16px !important; }
+    .contact-panel { padding: 26px 16px !important; }
+  }
 </style>
 </helmet>
 
@@ -40,7 +94,7 @@
   transparent;">
 
   <header style="position: sticky; top: 0; z-index: 20; backdrop-filter: blur(14px); background: var(--header, rgba(10,11,12,0.72)); border-bottom: 1px solid var(--line, rgba(255,255,255,0.07));">
-    <div style="max-width: 1120px; margin: 0 auto; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; gap: 24px;">
+    <div class="site-header-inner" style="max-width: 1120px; margin: 0 auto; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; gap: 24px;">
       <a href="#home" style="display: flex; align-items: center; gap: 11px; cursor: pointer; color: var(--ink, #EDECE8);">
         <span style="width: 7px; height: 7px; border-radius: 50%; background: var(--accent, #2EE6A8); flex: none;"></span>
         <div style="display: flex; flex-direction: column; line-height: 1.2;">
@@ -48,7 +102,7 @@
           <small style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--dim, #83868A); letter-spacing: 0.1em;">{{ t.kicker }}</small>
         </div>
       </a>
-      <nav style="display: flex; align-items: center; gap: 6px;">
+      <nav class="site-nav" style="display: flex; align-items: center; gap: 6px;">
         <a href="#home" data-active="{{ isHome }}" style="padding: 9px 15px; border-radius: 999px; border: 1px solid transparent; background: transparent; color: var(--muted, #9A9C9E); font-size: 14px; font-weight: 500;">{{ navHome }}</a>
         <a href="#sobre" data-active="{{ isSobre }}" style="padding: 9px 15px; border-radius: 999px; border: 1px solid transparent; background: transparent; color: var(--muted, #9A9C9E); font-size: 14px; font-weight: 500;">{{ navAbout }}</a>
         <a href="#empresas" data-active="{{ isEmpresas }}" style="padding: 9px 15px; border-radius: 999px; border: 1px solid transparent; background: transparent; color: var(--muted, #9A9C9E); font-size: 14px; font-weight: 500;">{{ navCompanies }}</a>
@@ -61,9 +115,9 @@
   </header>
 
   <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
-  <main style="max-width: 1120px; margin: 0 auto; padding: 0 24px 96px;">
+  <main class="page-shell home-shell" style="max-width: 1120px; margin: 0 auto; padding: 0 24px 96px;">
 
-    <section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 48px; align-items: center; padding: 88px 0 72px;">
+    <section class="home-hero" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 48px; align-items: center; padding: 88px 0 72px;">
       <div style="animation: fadeUp .6s ease both;">
         <div style="display: inline-flex; align-items: center; gap: 9px; padding: 7px 14px; border: 1px solid rgba(46,230,168,0.35); border-radius: 999px; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--accent, #2EE6A8); letter-spacing: 0.03em;">
           <span style="width: 7px; height: 7px; border-radius: 50%; background: var(--accent, #2EE6A8); animation: pulseDot 2s infinite;"></span>
@@ -76,12 +130,12 @@
         <p style="max-width: 54ch; margin: 24px 0 0; font-size: 17.5px; line-height: 1.62; color: var(--soft, #B4B6B8); text-wrap: pretty;">
           {{ t.heroText }}
         </p>
-        <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px;">
+        <div class="hero-actions" style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px;">
           <a href="#projetos" style="padding: 14px 26px; border-radius: 999px; border: none; background: var(--ink, #EDECE8); color: var(--bg, #0A0B0C); font-weight: 600; font-size: 15px;">{{ t.btnProjects }}</a>
           <a href="https://wa.me/5586999474587" target="_blank" rel="noopener" style="padding: 14px 26px; border-radius: 999px; border: 1px solid var(--line2, rgba(255,255,255,0.18)); background: transparent; color: var(--ink, #EDECE8); font-weight: 600; font-size: 15px;" style-hover="border-color: rgba(46,230,168,0.6); color: var(--accent, #2EE6A8);">{{ t.btnWa }}</a>
           <a href="{{ cvMailto }}" style="padding: 14px 26px; border-radius: 999px; border: 1px solid var(--line2, rgba(255,255,255,0.18)); background: transparent; color: var(--muted, #9A9C9E); font-weight: 600; font-size: 15px;" style-hover="border-color: var(--line2, rgba(255,255,255,0.4)); color: var(--ink, #EDECE8);">{{ t.btnCv }}</a>
         </div>
-        <div style="display: flex; align-items: center; gap: 18px; margin-top: 36px;">
+        <div class="hero-socials" style="display: flex; align-items: center; gap: 18px; margin-top: 36px;">
           <img src="https://raw.githubusercontent.com/TECHGAMESPI/portifolio/main/src/img/self.png" alt="José Cândido" style="width: 46px; height: 46px; border-radius: 50%; object-fit: cover; border: 1px solid var(--line2, rgba(255,255,255,0.14));" />
           <div style="display: flex; gap: 20px; font-size: 13.5px;">
             <a href="https://github.com/TECHGAMESPI" style="color: var(--muted, #9A9C9E);" style-hover="color: var(--ink, #EDECE8);">GitHub</a>
@@ -204,11 +258,11 @@
   </sc-if>
 
   <sc-if value="{{ isSobre }}" hint-placeholder-val="{{ false }}">
-  <main style="max-width: 1120px; margin: 0 auto; padding: 80px 24px 96px;">
+  <main class="page-shell" style="max-width: 1120px; margin: 0 auto; padding: 80px 24px 96px;">
     <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); letter-spacing: 0.08em;">{{ t.aboutKicker }}</div>
     <h1 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(34px, 5vw, 60px); letter-spacing: -0.035em; font-weight: 600; line-height: 1.03; margin: 18px 0 0; max-width: 18ch;">{{ t.aboutTitle }}</h1>
 
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 48px; margin-top: 48px; align-items: start;">
+    <div class="about-intro" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 48px; margin-top: 48px; align-items: start;">
       <div>
         <p style="font-size: 18px; line-height: 1.7; color: var(--soft, #C3C5C7); margin: 0; text-wrap: pretty;">{{ t.aboutP1 }}</p>
         <p style="font-size: 18px; line-height: 1.7; color: var(--muted, #9A9C9E); margin: 22px 0 0; text-wrap: pretty;">{{ t.aboutP2 }}</p>
@@ -225,7 +279,7 @@
       <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(26px, 3.4vw, 38px); letter-spacing: -0.03em; font-weight: 600; margin: 14px 0 36px;">{{ t.trajTitle }}</h2>
       <div style="display: flex; flex-direction: column;">
         <sc-for list="{{ timeline }}" as="t" hint-placeholder-count="4">
-          <div style="display: grid; grid-template-columns: 168px minmax(0, 1fr); gap: 28px; padding: 26px 0; border-top: 1px solid var(--line, rgba(255,255,255,0.08));">
+          <div class="timeline-item" style="display: grid; grid-template-columns: 168px minmax(0, 1fr); gap: 28px; padding: 26px 0; border-top: 1px solid var(--line, rgba(255,255,255,0.08));">
             <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent, #2EE6A8); padding-top: 4px;">{{ t.period }}</div>
             <div>
               <strong style="display: block; font-family: 'Space Grotesk', sans-serif; font-size: 19px; font-weight: 600;">{{ t.role }}</strong>
@@ -272,16 +326,16 @@
   </sc-if>
 
   <sc-if value="{{ isProjetos }}" hint-placeholder-val="{{ false }}">
-  <main style="max-width: 1120px; margin: 0 auto; padding: 80px 24px 96px;">
+  <main class="page-shell" style="max-width: 1120px; margin: 0 auto; padding: 80px 24px 96px;">
     <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); letter-spacing: 0.08em;">{{ t.workKicker }}</div>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 48px; align-items: end; margin-top: 18px;">
+    <div class="project-heading" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 48px; align-items: end; margin-top: 18px;">
       <h1 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(34px, 5vw, 60px); letter-spacing: -0.035em; font-weight: 600; line-height: 1.03; margin: 0;">{{ t.workTitle }}</h1>
       <p style="color: var(--muted, #9A9C9E); font-size: 15.5px; line-height: 1.65; margin: 0;">{{ t.workLead }}</p>
     </div>
 
     <div style="display: flex; flex-direction: column; margin-top: 56px;">
       <sc-for list="{{ projects }}" as="p" hint-placeholder-count="4">
-        <div style="display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 28px; padding: 40px 0; border-top: 1px solid var(--line, rgba(255,255,255,0.08));">
+        <div class="project-item" style="display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 28px; padding: 40px 0; border-top: 1px solid var(--line, rgba(255,255,255,0.08));">
           <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--dim, #83868A); padding-top: 6px;">{{ p.num }}</div>
           <div>
             <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 14px;">
@@ -303,8 +357,8 @@
       </sc-for>
     </div>
 
-    <section id="contato" style="margin-top: 88px; padding: 48px 44px; border: 1px solid var(--line, rgba(255,255,255,0.08)); border-radius: 24px; background: var(--panel, #0C0D0F);">
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 48px; align-items: start;">
+    <section id="contato" class="contact-panel" style="margin-top: 88px; padding: 48px 44px; border: 1px solid var(--line, rgba(255,255,255,0.08)); border-radius: 24px; background: var(--panel, #0C0D0F);">
+      <div class="contact-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 48px; align-items: start;">
         <div>
           <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); letter-spacing: 0.08em;">{{ t.contactKicker }}</div>
           <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(26px, 3.2vw, 38px); letter-spacing: -0.03em; font-weight: 600; margin: 14px 0 0; line-height: 1.1;">{{ t.contactTitle }}</h2>
@@ -332,11 +386,11 @@
   </sc-if>
 
   <sc-if value="{{ isEmpresas }}" hint-placeholder-val="{{ false }}">
-  <main style="max-width: 1120px; margin: 0 auto; padding: 80px 24px 96px;">
+  <main class="page-shell" style="max-width: 1120px; margin: 0 auto; padding: 80px 24px 96px;">
     <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); letter-spacing: 0.08em;">{{ t.compKicker }}</div>
     <h1 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(34px, 5vw, 60px); letter-spacing: -0.035em; font-weight: 600; line-height: 1.03; margin: 18px 0 0; max-width: 20ch;">{{ t.empTitle }}</h1>
 
-    <section style="margin-top: 72px; padding-top: 40px; border-top: 1px solid var(--line, rgba(255,255,255,0.08));">
+    <section class="company-section" style="margin-top: 72px; padding-top: 40px; border-top: 1px solid var(--line, rgba(255,255,255,0.08));">
       <div style="display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;">
         <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(30px, 4vw, 46px); letter-spacing: -0.03em; font-weight: 600; margin: 0;">ChatExpress</h2>
         <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent, #2EE6A8); padding: 5px 11px; border: 1px solid rgba(46,230,168,0.3); border-radius: 999px; letter-spacing: 0.05em;">{{ t.ceSub }}</span>
@@ -373,7 +427,7 @@
       <div style="margin-top: 56px;">
         <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); letter-spacing: 0.08em;">{{ t.plansKicker }}</div>
         <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(22px, 2.8vw, 30px); letter-spacing: -0.025em; font-weight: 600; margin: 12px 0 26px;">{{ t.plansTitle }}</h3>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; align-items: start;">
+        <div class="plans-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; align-items: start;">
           <sc-for list="{{ planos }}" as="pl" hint-placeholder-count="4">
             <div style="padding: 28px 24px; border: 1px solid var(--line, rgba(255,255,255,0.08)); border-radius: 18px; background: var(--panel, #0C0D0F); display: flex; flex-direction: column; gap: 14px;">
               <strong style="font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 600;">{{ pl.name }}</strong>
@@ -392,7 +446,7 @@
       </div>
     </section>
 
-    <section style="margin-top: 88px; padding-top: 40px; border-top: 1px solid var(--line, rgba(255,255,255,0.08));">
+    <section class="company-section" style="margin-top: 88px; padding-top: 40px; border-top: 1px solid var(--line, rgba(255,255,255,0.08));">
       <div style="display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;">
         <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(30px, 4vw, 46px); letter-spacing: -0.03em; font-weight: 600; margin: 0;">TechGamesPI</h2>
         <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #A78BFA; padding: 5px 11px; border: 1px solid rgba(167,139,250,0.3); border-radius: 999px; letter-spacing: 0.05em;">{{ t.tgBadge2 }}</span>
@@ -412,7 +466,7 @@
   </sc-if>
 
   <footer style="border-top: 1px solid var(--line, rgba(255,255,255,0.07)); margin-top: 40px;">
-    <div style="max-width: 1120px; margin: 0 auto; padding: 56px 24px 32px;">
+    <div class="site-footer-inner" style="max-width: 1120px; margin: 0 auto; padding: 56px 24px 32px;">
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 28px;">
         <div style="display: flex; flex-direction: column; gap: 7px;">
           <span style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--dim, #83868A); letter-spacing: 0.08em;">E-MAIL</span>
