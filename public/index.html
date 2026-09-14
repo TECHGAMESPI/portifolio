@@ -14,7 +14,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<script src="./image-slot.js"></script>
 <style>
   body { margin: 0; background: #0A0B0C; color: #EDECE8; font-family: 'Instrument Sans', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
   * { box-sizing: border-box; }
@@ -80,7 +79,7 @@
         <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px;">
           <a href="#projetos" style="padding: 14px 26px; border-radius: 999px; border: none; background: var(--ink, #EDECE8); color: var(--bg, #0A0B0C); font-weight: 600; font-size: 15px;">{{ t.btnProjects }}</a>
           <a href="https://wa.me/5586999474583" target="_blank" rel="noopener" style="padding: 14px 26px; border-radius: 999px; border: 1px solid var(--line2, rgba(255,255,255,0.18)); background: transparent; color: var(--ink, #EDECE8); font-weight: 600; font-size: 15px;" style-hover="border-color: rgba(46,230,168,0.6); color: var(--accent, #2EE6A8);">{{ t.btnWa }}</a>
-          <a href="mailto:candido@techgamespi.com?subject=Currículo" style="padding: 14px 26px; border-radius: 999px; border: 1px solid var(--line2, rgba(255,255,255,0.18)); background: transparent; color: var(--muted, #9A9C9E); font-weight: 600; font-size: 15px;" style-hover="border-color: var(--line2, rgba(255,255,255,0.4)); color: var(--ink, #EDECE8);">CV sob solicitação</a>
+          <a href="{{ cvMailto }}" style="padding: 14px 26px; border-radius: 999px; border: 1px solid var(--line2, rgba(255,255,255,0.18)); background: transparent; color: var(--muted, #9A9C9E); font-weight: 600; font-size: 15px;" style-hover="border-color: var(--line2, rgba(255,255,255,0.4)); color: var(--ink, #EDECE8);">{{ t.btnCv }}</a>
         </div>
         <div style="display: flex; align-items: center; gap: 18px; margin-top: 36px;">
           <img src="https://raw.githubusercontent.com/TECHGAMESPI/portifolio/main/src/img/self.png" alt="José Cândido" style="width: 46px; height: 46px; border-radius: 50%; object-fit: cover; border: 1px solid var(--line2, rgba(255,255,255,0.14));" />
@@ -206,24 +205,24 @@
 
   <sc-if value="{{ isSobre }}" hint-placeholder-val="{{ false }}">
   <main style="max-width: 1120px; margin: 0 auto; padding: 80px 24px 96px;">
-    <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); letter-spacing: 0.08em;">SOBRE MIM</div>
-    <h1 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(34px, 5vw, 60px); letter-spacing: -0.035em; font-weight: 600; line-height: 1.03; margin: 18px 0 0; max-width: 18ch;">Construo soluções pensando além do código.</h1>
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); letter-spacing: 0.08em;">{{ t.aboutKicker }}</div>
+    <h1 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(34px, 5vw, 60px); letter-spacing: -0.035em; font-weight: 600; line-height: 1.03; margin: 18px 0 0; max-width: 18ch;">{{ t.aboutTitle }}</h1>
 
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 48px; margin-top: 48px; align-items: start;">
       <div>
-        <p style="font-size: 18px; line-height: 1.7; color: var(--soft, #C3C5C7); margin: 0; text-wrap: pretty;">Sou Engenheiro de Software, com atuação prática contínua desde 2021 no desenvolvimento de soluções web e backend, unindo visão técnica, arquitetura de sistemas e alinhamento com objetivos de negócio.</p>
-        <p style="font-size: 18px; line-height: 1.7; color: var(--muted, #9A9C9E); margin: 22px 0 0; text-wrap: pretty;">Ao longo da minha trajetória, atuei como Desenvolvedor Full Stack, Estagiário de Desenvolvimento e atualmente como CTO, liderando decisões tecnológicas, integração de sistemas e construção de plataformas escaláveis. Tenho forte orientação à qualidade de código, segurança, desempenho e entrega de soluções funcionais.</p>
-        <p style="font-size: 18px; line-height: 1.7; color: var(--muted, #9A9C9E); margin: 22px 0 0; text-wrap: pretty;">Perfil autodidata, com aprendizado rápido e foco em melhoria contínua. Aberto a oportunidades que envolvam desenvolvimento de software, backend e arquitetura de sistemas.</p>
+        <p style="font-size: 18px; line-height: 1.7; color: var(--soft, #C3C5C7); margin: 0; text-wrap: pretty;">{{ t.aboutP1 }}</p>
+        <p style="font-size: 18px; line-height: 1.7; color: var(--muted, #9A9C9E); margin: 22px 0 0; text-wrap: pretty;">{{ t.aboutP2 }}</p>
+        <p style="font-size: 18px; line-height: 1.7; color: var(--muted, #9A9C9E); margin: 22px 0 0; text-wrap: pretty;">{{ t.aboutP3 }}</p>
       </div>
       <div style="display: flex; flex-direction: column; gap: 16px;">
-        <img src="src/img/self.png" alt="José Cândido" style="width: 100%; border-radius: 18px; object-fit: cover; aspect-ratio: 4 / 5; border: 1px solid var(--line2, rgba(255,255,255,0.1));" />
-        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); line-height: 1.6;">TERESINA, PI · BRASIL<br />candido@techgamespi.com</div>
+        <img src="https://raw.githubusercontent.com/TECHGAMESPI/portifolio/main/src/img/self.png" alt="José Cândido" style="width: 100%; border-radius: 18px; object-fit: cover; aspect-ratio: 4 / 5; border: 1px solid var(--line2, rgba(255,255,255,0.1));" />
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); line-height: 1.6;">{{ t.aboutLoc }}<br />candido@techgamespi.com</div>
       </div>
     </div>
 
     <section style="margin-top: 88px;">
-      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); letter-spacing: 0.08em;">TRAJETÓRIA</div>
-      <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(26px, 3.4vw, 38px); letter-spacing: -0.03em; font-weight: 600; margin: 14px 0 36px;">Experiência e formação</h2>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); letter-spacing: 0.08em;">{{ t.trajKicker }}</div>
+      <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(26px, 3.4vw, 38px); letter-spacing: -0.03em; font-weight: 600; margin: 14px 0 36px;">{{ t.trajTitle }}</h2>
       <div style="display: flex; flex-direction: column;">
         <sc-for list="{{ timeline }}" as="t" hint-placeholder-count="4">
           <div style="display: grid; grid-template-columns: 168px minmax(0, 1fr); gap: 28px; padding: 26px 0; border-top: 1px solid var(--line, rgba(255,255,255,0.08));">
@@ -239,14 +238,14 @@
     </section>
 
     <section style="margin-top: 88px;">
-      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); letter-spacing: 0.08em;">STACK PRINCIPAL</div>
-      <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(26px, 3.4vw, 38px); letter-spacing: -0.03em; font-weight: 600; margin: 14px 0 28px;">Tecnologias do dia a dia</h2>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); letter-spacing: 0.08em;">{{ t.stackKicker }}</div>
+      <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(26px, 3.4vw, 38px); letter-spacing: -0.03em; font-weight: 600; margin: 14px 0 28px;">{{ t.stackTitle }}</h2>
       <div style="display: flex; flex-wrap: wrap; gap: 10px;">
         <sc-for list="{{ skills }}" as="k" hint-placeholder-count="16">
           <span style="padding: 9px 16px; border: 1px solid var(--line2, rgba(255,255,255,0.12)); border-radius: 999px; font-size: 14px; color: var(--soft, #D6D7D8); background: var(--fill, rgba(255,255,255,0.03));">{{ k }}</span>
         </sc-for>
       </div>
-      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); letter-spacing: 0.08em; margin: 40px 0 18px;">TAMBÉM ATUO COM</div>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); letter-spacing: 0.08em; margin: 40px 0 18px;">{{ t.alsoLabel }}</div>
       <div style="display: flex; flex-wrap: wrap; gap: 10px;">
         <sc-for list="{{ exposedTo }}" as="k" hint-placeholder-count="7">
           <span style="padding: 9px 16px; border: 1px solid rgba(46,230,168,0.28); border-radius: 999px; font-size: 14px; color: var(--accent, #2EE6A8);">{{ k }}</span>
@@ -256,17 +255,16 @@
 
     <section style="margin-top: 88px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 16px;">
       <div style="padding: 30px 26px; border: 1px solid var(--line, rgba(255,255,255,0.08)); border-radius: 18px; background: var(--panel, #0C0D0F);">
-        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); letter-spacing: 0.08em;">PUBLICAÇÃO</div>
-        <strong style="display: block; font-family: 'Space Grotesk', sans-serif; font-size: 19px; font-weight: 600; margin: 14px 0 10px; line-height: 1.3;">RANSOMWARE: Análise de Impactos e Metodologia de Prevenção em Pequenas e Médias Empresas</strong>
-        <span style="font-size: 14.5px; color: var(--muted, #9A9C9E); line-height: 1.6;">Artigo publicado em revista Qualis B2, sobre impactos de ransomware e metodologias de prevenção.</span>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); letter-spacing: 0.08em;">{{ t.pubKicker }}</div>
+        <strong style="display: block; font-family: 'Space Grotesk', sans-serif; font-size: 19px; font-weight: 600; margin: 14px 0 10px; line-height: 1.3;">{{ t.pubTitle }}</strong>
+        <span style="font-size: 14.5px; color: var(--muted, #9A9C9E); line-height: 1.6;">{{ t.pubText }}</span>
       </div>
       <div style="padding: 30px 26px; border: 1px solid var(--line, rgba(255,255,255,0.08)); border-radius: 18px; background: var(--panel, #0C0D0F);">
-        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); letter-spacing: 0.08em;">IDIOMAS E COMPETÊNCIAS</div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); letter-spacing: 0.08em;">{{ t.compKicker2 }}</div>
         <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 16px;">
-          <span style="font-size: 15px; color: var(--soft, #C3C5C7); line-height: 1.55;">Português nativo · Inglês e Espanhol em nível funcional, com leitura técnica.</span>
-          <span style="font-size: 15px; color: var(--muted, #9A9C9E); line-height: 1.55;">Levantamento de requisitos e tradução em soluções técnicas.</span>
-          <span style="font-size: 15px; color: var(--muted, #9A9C9E); line-height: 1.55;">Comunicação técnica clara com equipes e clientes.</span>
-          <span style="font-size: 15px; color: var(--muted, #9A9C9E); line-height: 1.55;">Integração de sistemas e escalabilidade de plataformas.</span>
+          <sc-for list="{{ t.compLines }}" as="line" hint-placeholder-count="4">
+            <span style="font-size: 15px; color: var(--muted, #9A9C9E); line-height: 1.55;">{{ line }}</span>
+          </sc-for>
         </div>
       </div>
     </section>
@@ -275,17 +273,16 @@
 
   <sc-if value="{{ isProjetos }}" hint-placeholder-val="{{ false }}">
   <main style="max-width: 1120px; margin: 0 auto; padding: 80px 24px 96px;">
-    <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); letter-spacing: 0.08em;">TRABALHOS SELECIONADOS</div>
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); letter-spacing: 0.08em;">{{ t.workKicker }}</div>
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 48px; align-items: end; margin-top: 18px;">
-      <h1 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(34px, 5vw, 60px); letter-spacing: -0.035em; font-weight: 600; line-height: 1.03; margin: 0;">Projetos construídos para problemas reais.</h1>
-      <p style="color: var(--muted, #9A9C9E); font-size: 15.5px; line-height: 1.65; margin: 0;">Uma seleção que reúne produto, automação, operações e desenvolvimento full stack — com decisões técnicas orientadas ao uso no mundo real.</p>
+      <h1 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(34px, 5vw, 60px); letter-spacing: -0.035em; font-weight: 600; line-height: 1.03; margin: 0;">{{ t.workTitle }}</h1>
+      <p style="color: var(--muted, #9A9C9E); font-size: 15.5px; line-height: 1.65; margin: 0;">{{ t.workLead }}</p>
     </div>
 
     <div style="display: flex; flex-direction: column; margin-top: 56px;">
       <sc-for list="{{ projects }}" as="p" hint-placeholder-count="4">
         <div style="display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 28px; padding: 40px 0; border-top: 1px solid var(--line, rgba(255,255,255,0.08));">
           <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--dim, #83868A); padding-top: 6px;">{{ p.num }}</div>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 36px; align-items: start;">
           <div>
             <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 14px;">
               <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(26px, 3.2vw, 36px); letter-spacing: -0.03em; font-weight: 600; margin: 0;">{{ p.title }}</h2>
@@ -299,12 +296,8 @@
               </sc-for>
             </div>
             <sc-if value="{{ p.hasSource }}" hint-placeholder-val="{{ false }}">
-              <a href="{{ p.source }}" style="display: inline-block; margin-top: 22px; font-size: 14.5px; font-weight: 600;">Ver código no GitHub →</a>
+              <a href="{{ p.source }}" target="_blank" rel="noopener" style="display: inline-block; margin-top: 22px; font-size: 14.5px; font-weight: 600;">{{ t.sourceLink }}</a>
             </sc-if>
-          </div>
-          <div style="width: 100%; aspect-ratio: 16 / 10; border: 1px solid var(--line, rgba(255,255,255,0.08)); border-radius: 14px; overflow: hidden; background: var(--fill, rgba(255,255,255,0.02));">
-            <image-slot id="{{ p.slotId }}" shape="rect" placeholder="Solte um print do projeto"></image-slot>
-          </div>
           </div>
         </div>
       </sc-for>
@@ -313,9 +306,9 @@
     <section id="contato" style="margin-top: 88px; padding: 48px 44px; border: 1px solid var(--line, rgba(255,255,255,0.08)); border-radius: 24px; background: var(--panel, #0C0D0F);">
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 48px; align-items: start;">
         <div>
-          <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); letter-spacing: 0.08em;">CONTATO</div>
-          <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(26px, 3.2vw, 38px); letter-spacing: -0.03em; font-weight: 600; margin: 14px 0 0; line-height: 1.1;">Vamos conversar.</h2>
-          <p style="color: var(--muted, #9A9C9E); font-size: 15.5px; line-height: 1.65; margin: 16px 0 0;">Preencha o formulário ou fale direto pelos canais abaixo. Respondo em até 24 horas.</p>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); letter-spacing: 0.08em;">{{ t.contactKicker }}</div>
+          <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(26px, 3.2vw, 38px); letter-spacing: -0.03em; font-weight: 600; margin: 14px 0 0; line-height: 1.1;">{{ t.contactTitle }}</h2>
+          <p style="color: var(--muted, #9A9C9E); font-size: 15.5px; line-height: 1.65; margin: 16px 0 0;">{{ t.contactText }}</p>
           <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 28px; font-size: 14.5px;">
             <a href="mailto:candido@techgamespi.com">candido@techgamespi.com</a>
             <a href="https://wa.me/5586999474583">WhatsApp · (86) 99947-4583</a>
@@ -325,12 +318,12 @@
 
         <form id="contact-form" style="display: grid; gap: 14px;">
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px;">
-            <input type="text" name="nome" placeholder="Seu nome" required="true" style="padding: 14px 16px; border-radius: 12px; border: 1px solid var(--line2, rgba(255,255,255,0.12)); background: var(--fill, rgba(255,255,255,0.03)); color: var(--ink, #EDECE8); font-size: 15px; outline: none;" style-focus="border-color: rgba(46,230,168,0.6);" />
-            <input type="email" name="email" placeholder="Seu e-mail" required="true" style="padding: 14px 16px; border-radius: 12px; border: 1px solid var(--line2, rgba(255,255,255,0.12)); background: var(--fill, rgba(255,255,255,0.03)); color: var(--ink, #EDECE8); font-size: 15px; outline: none;" style-focus="border-color: rgba(46,230,168,0.6);" />
+            <input type="text" name="nome" placeholder="{{ t.fName }}" required="true" style="padding: 14px 16px; border-radius: 12px; border: 1px solid var(--line2, rgba(255,255,255,0.12)); background: var(--fill, rgba(255,255,255,0.03)); color: var(--ink, #EDECE8); font-size: 15px; outline: none;" style-focus="border-color: rgba(46,230,168,0.6);" />
+            <input type="email" name="email" placeholder="{{ t.fEmail }}" required="true" style="padding: 14px 16px; border-radius: 12px; border: 1px solid var(--line2, rgba(255,255,255,0.12)); background: var(--fill, rgba(255,255,255,0.03)); color: var(--ink, #EDECE8); font-size: 15px; outline: none;" style-focus="border-color: rgba(46,230,168,0.6);" />
           </div>
-          <input type="text" name="assunto" placeholder="Assunto (vaga, orçamento, parceria...)" style="padding: 14px 16px; border-radius: 12px; border: 1px solid var(--line2, rgba(255,255,255,0.12)); background: var(--fill, rgba(255,255,255,0.03)); color: var(--ink, #EDECE8); font-size: 15px; outline: none;" style-focus="border-color: rgba(46,230,168,0.6);" />
-          <textarea name="mensagem" rows="5" placeholder="Conte um pouco sobre o projeto ou a oportunidade" required="true" style="padding: 14px 16px; border-radius: 12px; border: 1px solid var(--line2, rgba(255,255,255,0.12)); background: var(--fill, rgba(255,255,255,0.03)); color: var(--ink, #EDECE8); font-size: 15px; outline: none; resize: vertical; font-family: inherit;" style-focus="border-color: rgba(46,230,168,0.6);"></textarea>
-          <button type="submit" style="padding: 15px 26px; border-radius: 12px; border: none; background: var(--accent, #2EE6A8); color: var(--on-accent, #06140F); font-weight: 600; font-size: 15px; cursor: pointer;" style-hover="background: var(--accent2, #7DF3C9);">Enviar mensagem</button>
+          <input type="text" name="assunto" placeholder="{{ t.fSubject }}" style="padding: 14px 16px; border-radius: 12px; border: 1px solid var(--line2, rgba(255,255,255,0.12)); background: var(--fill, rgba(255,255,255,0.03)); color: var(--ink, #EDECE8); font-size: 15px; outline: none;" style-focus="border-color: rgba(46,230,168,0.6);" />
+          <textarea name="mensagem" rows="5" placeholder="{{ t.fMsg }}" required="true" style="padding: 14px 16px; border-radius: 12px; border: 1px solid var(--line2, rgba(255,255,255,0.12)); background: var(--fill, rgba(255,255,255,0.03)); color: var(--ink, #EDECE8); font-size: 15px; outline: none; resize: vertical; font-family: inherit;" style-focus="border-color: rgba(46,230,168,0.6);"></textarea>
+          <button type="submit" style="padding: 15px 26px; border-radius: 12px; border: none; background: var(--accent, #2EE6A8); color: var(--on-accent, #06140F); font-weight: 600; font-size: 15px; cursor: pointer;" style-hover="background: var(--accent2, #7DF3C9);">{{ t.fSend }}</button>
           <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); line-height: 1.6;">{{ formHint }}</span>
         </form>
       </div>
@@ -340,20 +333,20 @@
 
   <sc-if value="{{ isEmpresas }}" hint-placeholder-val="{{ false }}">
   <main style="max-width: 1120px; margin: 0 auto; padding: 80px 24px 96px;">
-    <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); letter-spacing: 0.08em;">MINHAS EMPRESAS</div>
-    <h1 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(34px, 5vw, 60px); letter-spacing: -0.035em; font-weight: 600; line-height: 1.03; margin: 18px 0 0; max-width: 20ch;">Software que organiza e serviço que resolve.</h1>
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); letter-spacing: 0.08em;">{{ t.compKicker }}</div>
+    <h1 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(34px, 5vw, 60px); letter-spacing: -0.035em; font-weight: 600; line-height: 1.03; margin: 18px 0 0; max-width: 20ch;">{{ t.empTitle }}</h1>
 
     <section style="margin-top: 72px; padding-top: 40px; border-top: 1px solid var(--line, rgba(255,255,255,0.08));">
       <div style="display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;">
         <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(30px, 4vw, 46px); letter-spacing: -0.03em; font-weight: 600; margin: 0;">ChatExpress</h2>
-        <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent, #2EE6A8); padding: 5px 11px; border: 1px solid rgba(46,230,168,0.3); border-radius: 999px; letter-spacing: 0.05em;">ATENDIMENTO OMNICHANNEL</span>
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent, #2EE6A8); padding: 5px 11px; border: 1px solid rgba(46,230,168,0.3); border-radius: 999px; letter-spacing: 0.05em;">{{ t.ceSub }}</span>
       </div>
-      <p style="font-size: 19px; line-height: 1.65; color: var(--soft, #C3C5C7); max-width: 62ch; margin: 22px 0 0; text-wrap: pretty;">A nova forma de atendimento omnichannel para atender seus clientes em um só lugar.</p>
+      <p style="font-size: 19px; line-height: 1.65; color: var(--soft, #C3C5C7); max-width: 62ch; margin: 22px 0 0; text-wrap: pretty;">{{ t.ceLead }}</p>
       <a href="https://chatexpress.com.br" target="_blank" rel="noopener" style="display: inline-block; margin-top: 16px; font-size: 15px; font-weight: 600;">chatexpress.com.br →</a>
 
       <div style="margin-top: 52px;">
-        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); letter-spacing: 0.08em;">O PROBLEMA</div>
-        <p style="font-size: 16px; color: var(--muted, #9A9C9E); margin: 12px 0 24px; max-width: 66ch; line-height: 1.6;">Mais de 90% das empresas sofrem com os mesmos pontos:</p>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); letter-spacing: 0.08em;">{{ t.probKicker }}</div>
+        <p style="font-size: 16px; color: var(--muted, #9A9C9E); margin: 12px 0 24px; max-width: 66ch; line-height: 1.6;">{{ t.probLead }}</p>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px;">
           <sc-for list="{{ problemas }}" as="p" hint-placeholder-count="3">
             <div style="padding: 26px 24px; border: 1px solid var(--line, rgba(255,255,255,0.08)); border-radius: 16px; background: var(--fill, rgba(255,255,255,0.02));">
@@ -365,8 +358,8 @@
       </div>
 
       <div style="margin-top: 56px;">
-        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); letter-spacing: 0.08em;">BENEFÍCIOS</div>
-        <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(22px, 2.8vw, 30px); letter-spacing: -0.025em; font-weight: 600; margin: 12px 0 26px;">Uma grande quantidade de serviços ao seu dispor</h3>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); letter-spacing: 0.08em;">{{ t.benKicker }}</div>
+        <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(22px, 2.8vw, 30px); letter-spacing: -0.025em; font-weight: 600; margin: 12px 0 26px;">{{ t.benTitle }}</h3>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1px; background: var(--line, rgba(255,255,255,0.08)); border: 1px solid var(--line, rgba(255,255,255,0.08)); border-radius: 16px; overflow: hidden;">
           <sc-for list="{{ beneficios }}" as="b" hint-placeholder-count="6">
             <div style="background: var(--panel, #0C0D0F); padding: 26px 24px; display: flex; gap: 12px; align-items: flex-start;">
@@ -378,8 +371,8 @@
       </div>
 
       <div style="margin-top: 56px;">
-        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); letter-spacing: 0.08em;">PLANOS</div>
-        <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(22px, 2.8vw, 30px); letter-spacing: -0.025em; font-weight: 600; margin: 12px 0 26px;">Assinatura mensal, com agentes adicionais a R$ 53,99</h3>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim, #83868A); letter-spacing: 0.08em;">{{ t.plansKicker }}</div>
+        <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(22px, 2.8vw, 30px); letter-spacing: -0.025em; font-weight: 600; margin: 12px 0 26px;">{{ t.plansTitle }}</h3>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; align-items: start;">
           <sc-for list="{{ planos }}" as="pl" hint-placeholder-count="4">
             <div style="padding: 28px 24px; border: 1px solid var(--line, rgba(255,255,255,0.08)); border-radius: 18px; background: var(--panel, #0C0D0F); display: flex; flex-direction: column; gap: 14px;">
@@ -402,9 +395,9 @@
     <section style="margin-top: 88px; padding-top: 40px; border-top: 1px solid var(--line, rgba(255,255,255,0.08));">
       <div style="display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;">
         <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(30px, 4vw, 46px); letter-spacing: -0.03em; font-weight: 600; margin: 0;">TechGamesPI</h2>
-        <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #A78BFA; padding: 5px 11px; border: 1px solid rgba(167,139,250,0.3); border-radius: 999px; letter-spacing: 0.05em;">MANUTENÇÃO EM INFORMÁTICA</span>
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #A78BFA; padding: 5px 11px; border: 1px solid rgba(167,139,250,0.3); border-radius: 999px; letter-spacing: 0.05em;">{{ t.tgBadge2 }}</span>
       </div>
-      <p style="font-size: 19px; line-height: 1.65; color: var(--soft, #C3C5C7); max-width: 62ch; margin: 22px 0 0; text-wrap: pretty;">Projeto de manutenção em informática em geral: computadores, celulares e videogames, com diagnóstico honesto e prazo claro.</p>
+      <p style="font-size: 19px; line-height: 1.65; color: var(--soft, #C3C5C7); max-width: 62ch; margin: 22px 0 0; text-wrap: pretty;">{{ t.tgLead }}</p>
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 40px;">
         <sc-for list="{{ servicosTech }}" as="s" hint-placeholder-count="4">
           <div style="padding: 28px 24px; border: 1px solid var(--line, rgba(255,255,255,0.08)); border-radius: 16px; background: var(--fill, rgba(255,255,255,0.02)); transition: all 200ms ease;" style-hover="border-color: rgba(167,139,250,0.35); background: rgba(167,139,250,0.05);">
@@ -413,7 +406,7 @@
           </div>
         </sc-for>
       </div>
-      <a href="https://wa.me/5586999474583" target="_blank" rel="noopener" style="display: inline-block; margin-top: 32px; padding: 15px 30px; border-radius: 999px; background: var(--accent, #2EE6A8); color: var(--on-accent, #06140F); font-weight: 600; font-size: 15px;" style-hover="background: var(--accent2, #7DF3C9);">Solicitar orçamento no WhatsApp</a>
+      <a href="https://wa.me/5586999474583" target="_blank" rel="noopener" style="display: inline-block; margin-top: 32px; padding: 15px 30px; border-radius: 999px; background: var(--accent, #2EE6A8); color: var(--on-accent, #06140F); font-weight: 600; font-size: 15px;" style-hover="background: var(--accent2, #7DF3C9);">{{ t.tgCta }}</a>
     </section>
   </main>
   </sc-if>
@@ -440,7 +433,7 @@
       </div>
       <div style="display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-size: 13.5px; color: var(--dim, #83868A); margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line, rgba(255,255,255,0.07));">
         <span>© 2026 José Cândido · techgamespi.com</span>
-        <span style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; letter-spacing: 0.05em;">SOFTWARE · INFRAESTRUTURA · SEGURANÇA</span>
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; letter-spacing: 0.05em;">{{ t.footKicker }}</span>
       </div>
     </div>
   </footer>
@@ -544,7 +537,6 @@ const COPY = {
     workKicker: 'TRABALHOS SELECIONADOS',
     workTitle: 'Projetos construídos para problemas reais.',
     workLead: 'Uma seleção que reúne produto, automação, operações e desenvolvimento full stack — com decisões técnicas orientadas ao uso no mundo real.',
-    slotHint: 'Solte um print do projeto',
     sourceLink: 'Ver código no GitHub →',
     projects: [
       { title: 'VoaFácil', category: 'Produto digital', year: '2026', status: 'Em desenvolvimento',
@@ -659,7 +651,7 @@ const COPY = {
     alsoLabel: 'ALSO WORKING WITH',
     exposedTo: ['Systems architecture', 'Cybersecurity', 'Basic DevOps', 'Linux servers', 'WordPress', 'Magento', 'E-commerce'],
     pubKicker: 'PUBLICATION',
-    pubTitle: 'RANSOMWARE: Análise de Impactos e Metodologia de Prevenção em Pequenas e Médias Empresas',
+    pubTitle: 'RANSOMWARE: Impact Analysis and Prevention Methodology for Small and Medium-Sized Companies',
     pubText: 'Paper published in a Qualis B2 journal on ransomware impacts and prevention methodologies.',
     compKicker2: 'LANGUAGES AND STRENGTHS',
     compLines: [
@@ -689,7 +681,6 @@ const COPY = {
     workKicker: 'SELECTED WORK',
     workTitle: 'Projects built for real problems.',
     workLead: 'A selection spanning product, automation, operations and full stack development — with technical decisions driven by real-world use.',
-    slotHint: 'Drop a screenshot of the project',
     sourceLink: 'View code on GitHub →',
     projects: [
       { title: 'VoaFácil', category: 'Digital product', year: '2026', status: 'In development',
@@ -835,9 +826,10 @@ class Component extends DCLogic {
           event.preventDefault();
           const name = form.nome.value;
           const email = form.email.value;
-          const subject = form.assunto.value || 'Contato pelo site';
+          const isPortuguese = this.state.lang === 'pt';
+          const subject = form.assunto.value || (isPortuguese ? 'Contato pelo site' : 'Contact from the website');
           const message = form.mensagem.value;
-          const body = 'Nome: ' + name + '\nE-mail: ' + email + '\n\n' + message;
+          const body = (isPortuguese ? 'Nome: ' : 'Name: ') + name + '\nEmail: ' + email + '\n\n' + message;
           window.location.href = 'mailto:candido@techgamespi.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
         });
       }
@@ -966,6 +958,7 @@ class Component extends DCLogic {
     return {
       t: t,
       langLabel: this.state.lang === 'pt' ? 'EN' : 'PT',
+      cvMailto: 'mailto:candido@techgamespi.com?subject=' + encodeURIComponent(this.state.lang === 'pt' ? 'Currículo' : 'CV request'),
       toggleLang: () => this.toggleLang(),
       bgRef: (el) => { this.canvas = el; },
       themeVars: {
